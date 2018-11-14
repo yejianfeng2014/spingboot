@@ -133,7 +133,7 @@ public class Token {
                     if (tkk_expr != null) {
 
 
-                        System.out.println(tkk_expr);
+//                        System.out.println(tkk_expr);
                         a = getGroup1("a\\\\x3d(-?\\d+);", tkk_expr);
                         b = getGroup1("b\\\\x3d(-?\\d+);", tkk_expr);
                         break;
@@ -161,10 +161,10 @@ public class Token {
         String[] split = tkk_expr.split(";");
         String[] split1 = split[0].split("=");
 
-        System.out.println(split1[1]);
+//        System.out.println(split1[1]);
 
         String substring = split1[1].substring(1, split1[1].length() - 1);
-        System.out.println(substring);
+//        System.out.println(substring);
 
 //        result = hours + "." + (Long.parseLong(a) + Long.parseLong(b));
         this.token_key = substring;

@@ -156,15 +156,11 @@ public class gTTS4j {
                         + "&" + "textlen=" + part.length()
                         + "&" + "tk=" + this.token.calculate_token(part, null)
                         ;
-//https://translate.google.cn/translate_tts?ie=UTF-8&
-// q=test
-// &tl=en&total=1&idx=0&textlen=4&tk=664831.830512&client=t&ttsspeed=0.24
-
 
                 System.out.println(url);
                 httpClient = HttpClients.createDefault();
 
-                System.out.println(GOOGLE_TTS_URL);
+//                System.out.println(GOOGLE_TTS_URL);
                 HttpGet get = new HttpGet(GOOGLE_TTS_URL);
                 try {
                     URI uri = new URI(url);
@@ -184,17 +180,21 @@ public class gTTS4j {
                 if (httpEntity != null) {
 
 
-                    InputStream in = httpEntity.getContent();
+//                    return  httpEntity
+
+                     is = httpEntity.getContent();
 
 
+                    return  is;
+                 /*
                     boolean streaming = httpEntity.isStreaming();
 
                     System.out.println("is streaming: " +streaming);
                     System.out.println("read  is");
                     is = httpEntity.getContent();
 
-                  /*  httpEntity.writeTo( new BufferedOutputStream(new FileOutputStream(writename));
-                    );*/
+                  *//*  httpEntity.writeTo( new BufferedOutputStream(new FileOutputStream(writename));
+                    );*//*
 
                     BufferedInputStream bfs = new BufferedInputStream(in);
 
@@ -218,7 +218,7 @@ public class gTTS4j {
 
                     if (bfo !=null) bfo.close();
                     if (bfo !=null) bfo.close();
-
+*/
 
                 }
 
@@ -227,29 +227,29 @@ public class gTTS4j {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (is != null) {
+            /*if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
 
-            if (response != null) {
+            /*if (response != null) {
                 try {
                     response.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
 
-            if (httpClient != null) {
+           /* if (httpClient != null) {
                 try {
                     httpClient.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
         }
 
         return is;

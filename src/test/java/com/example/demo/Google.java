@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * Created by yejianfeng on 2018/11/5.
  *
- * 这个是翻译功能，这个调试通过了
+ * 这个是翻译功能，这个调试通过了 页面暂时不使用这个翻译功能
  *
  */
 public class Google {
