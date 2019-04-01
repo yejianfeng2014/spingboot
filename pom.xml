@@ -135,6 +135,40 @@
             <version>1.1-20120112</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.56</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <!--解析HTML-->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.3</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/edu.mit.ll/mitie  如果有问题使用 0.2 或者0.3 的版本-->
+        <dependency>
+            <groupId>edu.mit.ll</groupId>
+            <artifactId>mitie</artifactId>
+            <version>0.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.tensorflow</groupId>
+            <artifactId>tensorflow</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+
+
+
+
     </dependencies>
 
     <build>

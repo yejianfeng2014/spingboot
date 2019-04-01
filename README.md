@@ -7,3 +7,9 @@
 
 swagger api 页面
 http://localhost:8888/swagger-ui.html#/
+
+
+导入自定的jar 
+进入jars 目录 执行以下命令
+
+mvn install:install-file -Dfile=./javamitie.jar -DgroupId=orderplus.com.cn -DartifactId=javamitie - Dversion=1.0 -Dpackaging=jar
