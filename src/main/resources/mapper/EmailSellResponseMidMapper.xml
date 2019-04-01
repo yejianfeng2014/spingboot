@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.mysql.EmailSellResponseMidMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.EmailSellResponseMid" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="conten_type" property="contenType" jdbcType="VARCHAR" />
+    <result column="content_cn" property="contentCn" jdbcType="VARCHAR" />
+    <result column="content_response" property="contentResponse" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.bean.mysql.EmailSellResponseMid" >
+    insert into email_sell_response_mid (id, conten_type, content_cn, 
+      content_response)
+    values (#{id,jdbcType=VARCHAR}, #{contenType,jdbcType=VARCHAR}, #{contentCn,jdbcType=VARCHAR}, 
+      #{contentResponse,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.EmailSellResponseMid" >
+    insert into email_sell_response_mid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="contenType != null" >
+        conten_type,
+      </if>
+      <if test="contentCn != null" >
+        content_cn,
+      </if>
+      <if test="contentResponse != null" >
+        content_response,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="contenType != null" >
+        #{contenType,jdbcType=VARCHAR},
+      </if>
+      <if test="contentCn != null" >
+        #{contentCn,jdbcType=VARCHAR},
+      </if>
+      <if test="contentResponse != null" >
+        #{contentResponse,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class KerasDeployerController {
 
 
-    public static void main(String[] args) throws Exception {
+  /*  public static void main(String[] args) throws Exception {
         try (Graph graph = new Graph()) {
             graph.importGraphDef(Files.readAllBytes(Paths.get(
                     "D:\\python_workspace\\semanaly\\lstm\\model.pb"
@@ -31,7 +31,7 @@ public class KerasDeployerController {
                 }
             }
         }
-    }
+    }*/
 
 
 

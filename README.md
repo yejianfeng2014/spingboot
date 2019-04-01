@@ -13,3 +13,11 @@ http://localhost:8888/swagger-ui.html#/
 进入jars 目录 执行以下命令
 
 mvn install:install-file -Dfile=./javamitie.jar -DgroupId=orderplus.com.cn -DartifactId=javamitie - Dversion=1.0 -Dpackaging=jar
+
+
+
+反向生成到层的文件  添加完插件后
+
+mybatis-generator:generate –e 
+
+

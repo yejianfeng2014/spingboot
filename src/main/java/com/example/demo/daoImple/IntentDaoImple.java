@@ -2,7 +2,6 @@ package com.example.demo.daoImple;
 
 import com.example.demo.dao.IntentDao;
 import com.example.demo.entry.Email;
-import com.example.demo.entry.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -36,6 +35,8 @@ public class IntentDaoImple implements IntentDao {
 
         jdbcTemplate.update("UPDATE t_email SET biaoji = ? WHERE id = ?", new Object[] {email.getBiaoji(), email.getId()});
 
-
     }
+
+
+
 }
