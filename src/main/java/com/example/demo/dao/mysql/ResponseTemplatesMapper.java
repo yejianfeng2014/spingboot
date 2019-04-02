@@ -1,17 +1,9 @@
 package com.example.demo.dao.mysql;
 
-import com.example.demo.bean.mysql.ResponseTemplates;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface ResponseTemplatesMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(ResponseTemplates record);
-
-    int insertSelective(ResponseTemplates record);
-
-    ResponseTemplates selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(ResponseTemplates record);
-
-    int updateByPrimaryKey(ResponseTemplates record);
 }

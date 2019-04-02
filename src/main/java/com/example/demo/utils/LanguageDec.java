@@ -11,13 +11,7 @@ import java.util.HashMap;
 
 public  class LanguageDec {
 
-
-
-
     public static String getLanuage(String text) {
-
-
-
 
         // 设置语言优先级
          HashMap priorMap = new HashMap();
@@ -27,28 +21,21 @@ public  class LanguageDec {
         priorMap.put("zh-cn", 5D);
         priorMap.put("zh-tw", 4D);
 
-
         String result = "";
         Detector detect;
         try {
-
             int size = DetectorFactory.getLangList().size();
-
             if (size  == 0){
                 DetectorFactory.loadProfile(new File(LanguageDect.class.getResource("/profiles").toURI()));
             }else {
 
             }
 
-
             detect = DetectorFactory.create();
-
             // 打印出支持的语言列表
             System.out.println(DetectorFactory.getLangList());
 
-
              detect.setPriorMap(priorMap);
-
             // 设置文本
             detect.append(text);
             // detect.append(T2);
