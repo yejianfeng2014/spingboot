@@ -11,8 +11,6 @@ import java.io.File;
 
 /**
  *  实体关系检测
- *
- *
  */
 
 @RestController("/relation")
@@ -20,14 +18,11 @@ import java.io.File;
 @Api(tags = "relation_tag", description = "关系检测")
 public class EntityRelationsController {
 
-
-
 //    @RequestMapping(value = "init",method = RequestMethod.GET)
 //    public String hello() {
 //        return "hello entity init";
 //
 //    }
-
 
     @RequestMapping(value = "born_in",method = RequestMethod.GET)
     public String getBornIn(String text) {

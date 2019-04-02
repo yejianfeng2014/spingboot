@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/emailSellResponseBegginController")
 public class EmailSellResponseBegginController {
+
     private static final Logger logger = LoggerFactory.getLogger(EmailSellResponseBegginController.class);
 
     @Autowired
@@ -44,7 +44,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "list")
+    @RequestMapping(value = "list",method = RequestMethod.GET)
     public String list(HttpServletRequest request) {
 //        return new ModelAndView("com/jeecg/com/emailSellResponseBegginList");
 
@@ -101,7 +101,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping()
+    @RequestMapping(value = "del",method = RequestMethod.GET)
     @ResponseBody
     public Object doDel(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
         String message = null;
@@ -130,7 +130,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doBatchDel")
+    @RequestMapping(value = "doBatchDel",method = RequestMethod.GET)
     @ResponseBody
     public Object doBatchDel(String ids, HttpServletRequest request) {
         String message = null;
@@ -159,7 +159,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doAdd")
+    @RequestMapping(value = "doAdd",method = RequestMethod.GET)
     @ResponseBody
     public Object doAdd(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
         String message = null;
@@ -182,7 +182,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doUpdate")
+    @RequestMapping(value = "doUpdate",method = RequestMethod.GET)
     @ResponseBody
     public Object doUpdate(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
         String message = null;

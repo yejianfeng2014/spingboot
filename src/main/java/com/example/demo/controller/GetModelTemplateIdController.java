@@ -18,7 +18,7 @@ public class GetModelTemplateIdController {
     @RequestMapping(value = "init",method = RequestMethod.GET)
     public String templateInit() {
 
-        // todo模板初始化的方法，后期考虑加入Redis加快速度
+        // todo 模板初始化的方法，后期考虑加入Redis加快速度
         return "hello entity init";
     }
 
