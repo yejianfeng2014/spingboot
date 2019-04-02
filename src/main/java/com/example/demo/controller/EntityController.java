@@ -20,11 +20,11 @@ import java.io.File;
 @RequestMapping("/entity")
 @Api(tags = "Entity", description = "实体识别")
 public class EntityController {
-    @RequestMapping(value = "init",method = RequestMethod.GET)
-    public String hello() {
-        return "hello entity init";
-
-    }
+//    @RequestMapping(value = "init",method = RequestMethod.GET)
+//    public String hello() {
+//        return "hello entity init";
+//
+//    }
 
     @RequestMapping(value = "getEntity",method = RequestMethod.GET)
     public String getEntity(String text) {

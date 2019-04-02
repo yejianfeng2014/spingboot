@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController("/getTemplateId")
-@Api(tags = "relation", description = "获取模板id")
+@Api(tags = "通过内容获取模板id", description = "获取模板id")
 public class GetModelTemplateIdController {
 
     @RequestMapping(value = "init",method = RequestMethod.GET)
@@ -34,11 +34,6 @@ public class GetModelTemplateIdController {
 
 
         // TODO: 2019/4/1  从数据库读取数据
-
-
-
-
-
 
 
         return "";

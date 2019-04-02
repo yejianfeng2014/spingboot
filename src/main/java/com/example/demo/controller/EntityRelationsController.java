@@ -17,16 +17,16 @@ import java.io.File;
 
 @RestController("/relation")
 
-@Api(tags = "relation", description = "关系检测")
+@Api(tags = "relation_tag", description = "关系检测")
 public class EntityRelationsController {
 
 
 
-    @RequestMapping(value = "init",method = RequestMethod.GET)
-    public String hello() {
-        return "hello entity init";
-
-    }
+//    @RequestMapping(value = "init",method = RequestMethod.GET)
+//    public String hello() {
+//        return "hello entity init";
+//
+//    }
 
 
     @RequestMapping(value = "born_in",method = RequestMethod.GET)
