@@ -16,7 +16,6 @@ import java.io.File;
 
 
 @RestController
-
 @RequestMapping("/entity")
 @Api(tags = "Entity", description = "实体识别")
 public class EntityController {

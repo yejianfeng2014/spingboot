@@ -1,0 +1,65 @@
+{
+  "total": 23,
+  "rows": [
+    {
+      "content_response": "Dear customer,\n\nThanks for your concern on our website and I am pleased to be of serving at you.\n\nWe are located in Hongkong. All the items will be shipped out from Hongkong.\n\nIf you are interested in our products, please visit our website 网站 to place the",
+      "content_type": "1.询问",
+      "content_cn": "1)你们公司在哪里？产品从哪里发出？",
+      "id": "1"
+    },
+    {
+      "content_response": "Dear customer,\n\nThanks for your email and have a blessed day.\n\nWe understand your concern and can assure you of lawful operation of our company. \n\nWe provide qualified products and attentive service.We provide worldwide shipping on a global scale includin",
+      "content_type": "1.询问",
+      "content_cn": "2)询问网站是否值得信任，物流是否能到某地？",
+      "id": "2"
+    },
+    {
+      "content_response": "Dear customer, \n\nHope you are doing well today. I pray this email finds you well and blessed. \n\nPlease place an order ：choose items----add to your shopping cart----check out now-----complete the address information---choose shipping method----proceed to p",
+      "content_type": "1.询问",
+      "content_cn": "3)如何下订单(XX站)",
+      "id": "3"
+    },
+    {
+      "content_response": "Dear Customer,\n\nGlad to serve you.\n\nSorry that we could not locate any order under your existing email address. \n\nAre you sure you are placing an order under our site? If yes.\n\nPlease provide us the order NO. so that I can check the status and more detail",
+      "content_type": "1.询问",
+      "content_cn": "4）顾客询问订单情况，查不到订单，向顾客索要订单号",
+      "id": "4"
+    },
+    {
+      "content_response": "Dear customer, \n\nHope you are doing well today. I pray this email finds you well and blessed. \n\nWe are very sorry to hear that you were in trouble on the payment here. \n\n1. Could you please change another card to try once more or you can choose to use pay",
+      "content_type": "2.付款",
+      "content_cn": "1)付款方式有哪些?(paypal和信用卡,转账)",
+      "id": "5"
+    },
+    {
+      "content_response": "Dear customer,\n\nWe are sincerely sorry that currently we do not accept cash on delivery（except Indonesia）. You can directly place your order on our website. Your order will be processed immediately once your payment is received. \n\nWe have customers all ar",
+      "content_type": "3.付款",
+      "content_cn": "2)接受货到付款吗?(除popreal和calladream几个阿拉伯国家以外都可用该模板)",
+      "id": "6"
+    },
+    {
+      "content_response": "Dear customer,\n\nThanks for your concern on our website and I am pleased to be of serving to you.\n\nIn some cases, there will be VAT or other taxes, like customs duties or fees levied by your destination country.\n1. We have no control over these charges and",
+      "content_type": "4.付款",
+      "content_cn": "3)关于关税, 谁支付关税？",
+      "id": "7"
+    },
+    {
+      "content_response": "Dear customer,\n\nThanks for your email and have a blessed day.\n\nPlease provide the SKU or pictures of the items you are interested, we will help you find and confirm.\n\nOnce we get the items details, we will reply you as soon as possible.\n\nPlease let us kno",
+      "content_type": "3.价格",
+      "content_cn": "1)询问产品价格",
+      "id": "8"
+    },
+    {
+      "content_response": "Dear customer, \n\nThank you for your interests in our items. \n\nI am sorry but we can’t offer you that lowprice you asked for. We feel that the price listed is reasonable and has been carefully calculated and leaves me limited profit already. \n\nHowever, we’",
+      "content_type": "4.价格",
+      "content_cn": "2)价格是否可以再低？",
+      "id": "9"
+    },
+    {
+      "content_response": "Dear customer,\n\nWe are sincerely sorry for the payment failure during the payment process. \n\nCould you please provide us screenshots of the error information you received? We will check and solve for you properly. \n\nThanks for your cooperation, we will he",
+      "content_type": "5.价格",
+      "content_cn": "3)客户支付失败，请客户提供失败截图",
+      "id": "10"
+    }
+  ]
+}

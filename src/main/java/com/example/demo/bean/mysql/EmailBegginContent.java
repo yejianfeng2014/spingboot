@@ -30,4 +30,10 @@ public class EmailBegginContent {
     public void setBeizhuCn(String beizhuCn) {
         this.beizhuCn = beizhuCn == null ? null : beizhuCn.trim();
     }
+
+
+
+//    cgAutoListController.do?list&id=helloword
+
+
 }
