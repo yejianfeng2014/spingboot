@@ -45,8 +45,10 @@
         <!--<table tableName="email_sell_response_others" domainObjectName="EmailSellResponseOthers" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!---->
 
-
+<!--
         <table tableName="response_templates" domainObjectName="ResponseTemplates" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        -->
+        <table tableName="t_email" domainObjectName="Temail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
 
     </context>
