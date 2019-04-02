@@ -1,93 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.demo.dao.mysql.ResponseTemplatesMapper" >
-  <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.ResponseTemplates" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="product_status" property="productStatus" jdbcType="INTEGER" />
-    <result column="template_id" property="templateId" jdbcType="INTEGER" />
-    <result column="custom_content" property="customContent" jdbcType="VARCHAR" />
-    <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, product_status, template_id, custom_content, beizhu
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from response_templates
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.mysql.ResponseTemplatesMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.ResponseTemplates">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="beizhu" jdbcType="VARCHAR" property="beizhu"/>
+        <result column="biaoji" jdbcType="VARCHAR" property="biaoji"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.bean.mysql.ResponseTemplates">
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+    </resultMap>
+
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from response_templates
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.bean.mysql.ResponseTemplates" >
-    insert into response_templates (id, product_status, template_id, 
-      custom_content, beizhu)
-    values (#{id,jdbcType=INTEGER}, #{productStatus,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, 
-      #{customContent,jdbcType=VARCHAR}, #{beizhu,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.ResponseTemplates" >
-    insert into response_templates
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="productStatus != null" >
-        product_status,
-      </if>
-      <if test="templateId != null" >
-        template_id,
-      </if>
-      <if test="customContent != null" >
-        custom_content,
-      </if>
-      <if test="beizhu != null" >
-        beizhu,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="productStatus != null" >
-        #{productStatus,jdbcType=INTEGER},
-      </if>
-      <if test="templateId != null" >
-        #{templateId,jdbcType=INTEGER},
-      </if>
-      <if test="customContent != null" >
-        #{customContent,jdbcType=VARCHAR},
-      </if>
-      <if test="beizhu != null" >
-        #{beizhu,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.mysql.ResponseTemplates" >
-    update response_templates
-    <set >
-      <if test="productStatus != null" >
-        product_status = #{productStatus,jdbcType=INTEGER},
-      </if>
-      <if test="templateId != null" >
-        template_id = #{templateId,jdbcType=INTEGER},
-      </if>
-      <if test="customContent != null" >
-        custom_content = #{customContent,jdbcType=VARCHAR},
-      </if>
-      <if test="beizhu != null" >
-        beizhu = #{beizhu,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.mysql.ResponseTemplates" >
-    update response_templates
-    set product_status = #{productStatus,jdbcType=INTEGER},
-      template_id = #{templateId,jdbcType=INTEGER},
-      custom_content = #{customContent,jdbcType=VARCHAR},
-      beizhu = #{beizhu,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+
 </mapper>

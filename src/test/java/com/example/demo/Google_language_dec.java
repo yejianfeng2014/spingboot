@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -19,11 +21,13 @@ import java.util.Map;
 /**
  * Created by yejianfeng on 2018/11/5.
  *
- * 这个是翻译功能，这个调试通过了 页面暂时不使用这个翻译功能
+ * 这个是翻译功能，但是我只是用这个翻译里面的语言检测功能
+ *  语言检测在翻译功能内嵌里面了,所以多了一个翻译过程
  *
  */
-public class Google {
+public class Google_language_dec {
 
+    // 写成接口
 
     public static void main(String[] args) throws Exception {
         String from = "auto";
@@ -69,9 +73,13 @@ public class Google {
         HttpEntity entity = response.getEntity();
 
         String result = EntityUtils.toString(entity, "utf-8");
+        JSONArray objects = JSON.parseArray(result);
 
-        System.out.println(result);
+        JSONArray jsonArray = objects.getJSONArray(8);
 
+        JSONArray jsonArray1 = jsonArray.getJSONArray(3);
+        String string1 = jsonArray1.getString(0);
+        System.out.println(string1);
         EntityUtils.consume(entity);
         response.getEntity().getContent().close();
         response.close();

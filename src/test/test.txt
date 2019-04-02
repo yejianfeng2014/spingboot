@@ -1,0 +1,14 @@
+client=webapp&sl=auto&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&dt=gt&ssel=0&tsel=3&kc=0&tk=482423.117084&q=continue%20claim%20note
+
+
+/translate_a/single?hl=zh-CN&source=btn&dt=t&tsel=0&ssel=0&q=continue+claim+note&oe=UTF-8&tk=767877.885745&tl=en&kc=0&client=t&sl=zh-CN&ie=UTF-8 HTTP/1.1
+
+
+
+输入英语：
+
+[[["continue claim note","continue claim note",null,null,0]],null,"en",null,null,null,1,null,[["en"],null,[1],["en"]]]
+
+输入汉语
+
+[[["I'm a Chinese","我是一个中国人",null,null,1]],null,"zh-CN",null,null,null,1,null,[["zh-CN"],null,[1],["zh-CN"]]]
