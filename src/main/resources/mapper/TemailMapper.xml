@@ -132,4 +132,17 @@
 
 
 
+  <select id="total" parameterType="long" resultType="long">
+    SELECT count(1) FROM t_email
+  </select>
+
+  <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
+        select * from t_email limit #{currIndex} , #{pageSize}
+</select>
+
+
+
+
+
+
 </mapper>

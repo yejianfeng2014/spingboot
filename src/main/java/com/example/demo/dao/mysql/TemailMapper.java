@@ -1,9 +1,11 @@
 package com.example.demo.dao.mysql;
 
+import com.example.demo.bean.mysql.EmailSellResponseBeggin;
 import com.example.demo.bean.mysql.Temail;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface TemailMapper {
@@ -25,6 +27,12 @@ public interface TemailMapper {
     List<Temail>  selectAll();
 
     Temail selectOnetoBiaoji();
+
+
+    long total();
+
+    List<Temail> queryPageBySql(Map<String,Object> data);
+
 
 
 
