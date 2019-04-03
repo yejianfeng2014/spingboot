@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/emailSellResponseBegginController")
-@Api(tags = "emailSellResponseBegginController", description = "邮件回复模板的管理功能")
+@Api(tags = "emailSellResponseBegginController", description = "邮件回复模板开始部分的管理功能")
 public class EmailSellResponseBegginController {
 
     private static final Logger logger = LoggerFactory.getLogger(EmailSellResponseBegginController.class);
@@ -103,7 +103,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "del",method = RequestMethod.GET)
+    @RequestMapping(value = "del",method = RequestMethod.POST)
     @ResponseBody
     public Object doDel(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
         String message = null;
@@ -132,7 +132,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doBatchDel",method = RequestMethod.GET)
+    @RequestMapping(value = "doBatchDel",method = RequestMethod.POST)
     @ResponseBody
     public Object doBatchDel(String ids, HttpServletRequest request) {
         String message = null;
@@ -161,7 +161,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doAdd",method = RequestMethod.GET)
+    @RequestMapping(value = "doAdd",method = RequestMethod.POST)
     @ResponseBody
     public Object doAdd(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
         String message = null;
@@ -184,7 +184,7 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doUpdate",method = RequestMethod.GET)
+    @RequestMapping(value = "doUpdate",method = RequestMethod.POST)
     @ResponseBody
     public Object doUpdate(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
         String message = null;

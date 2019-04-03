@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.demo.bean.mysql.EmailSellResponseEnd;
 import com.example.demo.bean.mysql.EmailSellResponseMid;
 import com.example.demo.model.json.AjaxJson;
 import com.example.demo.model.json.DataGrid;
@@ -16,6 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**   
  * @Title: Controller  
@@ -55,21 +61,50 @@ public class EmailSellResponseMidController {
 	 * @param
 	 */
 	@RequestMapping(value = "datagrid",method = RequestMethod.GET)
-	public void datagrid(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+    @ResponseBody
+	public Object datagrid(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 //		CriteriaQuery cq = new CriteriaQuery(EmailSellResponseMidEntity.class, dataGrid);
 //		//查询条件组装器
 //		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, emailSellResponseMid, request.getParameterMap());
 //		cq.add();
 //		this.emailSellResponseMidService.getDataGridReturn(cq, true);
 //		TagUtil.datagrid(response, dataGrid);
-	}
+
+
+
+        System.out.println(dataGrid.toString());
+        List<EmailSellResponseMid> l = new ArrayList();
+        for (int i = 0; i < 24; i++) {
+            EmailSellResponseMid e = new EmailSellResponseMid();
+//            e.s
+            e.setContentCn("sfdf");
+            e.setId("id");
+            e.setContentResponse("sss");
+//            e.setContentType("fdf");
+            l.add(e);
+        }
+
+        Map<String, Object> stringObjectHashMap = new HashMap<>();
+
+
+        stringObjectHashMap.put("total", 24);
+        stringObjectHashMap.put("rows", l);
+
+
+        System.out.println(123);
+
+        return stringObjectHashMap;
+
+
+
+    }
 	
 	/**
 	 * 删除email_sell_response_mid
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "doDel",method = RequestMethod.GET)
+	@RequestMapping(value = "doDel",method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson doDel(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request) {
 		String message = null;
@@ -93,7 +128,7 @@ public class EmailSellResponseMidController {
 	 * 
 	 * @return
 	 */
-	 @RequestMapping(value = "doBatchDel",method = RequestMethod.GET)
+	 @RequestMapping(value = "doBatchDel",method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
 		String message = null;
@@ -121,7 +156,7 @@ public class EmailSellResponseMidController {
 	 * @param
 	 * @return
 	 */
-	@RequestMapping(value = "doAdd",method = RequestMethod.GET)
+	@RequestMapping(value = "doAdd",method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson doAdd(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request) {
 		String message = null;
@@ -143,7 +178,7 @@ public class EmailSellResponseMidController {
 	 * @param
 	 * @return
 	 */
-	@RequestMapping(value = "doUpdate",method = RequestMethod.GET)
+	@RequestMapping(value = "doUpdate",method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson doUpdate(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request) {
 		String message = null;
