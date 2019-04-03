@@ -7,9 +7,11 @@ import com.example.demo.bean.mysql.EmailSellResponseOthers;
 import com.example.demo.model.json.AjaxJson;
 import com.example.demo.model.json.DataGrid;
 import com.example.demo.service.EmailSellResponseOthersServiceI;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/emailSellResponseOthersController")
+@Api(tags = "emailSellResponseOthersController", description = "邮件回复模板其他内容的管理功能")
 public class EmailSellResponseOthersController {
     private static final Logger logger = LoggerFactory.getLogger(EmailSellResponseOthersController.class);
 
@@ -38,9 +41,12 @@ public class EmailSellResponseOthersController {
      *
      * @return
      */
-    @RequestMapping(params = "list")
-    public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/jeecg/com/emailSellResponseOthersList");
+    @RequestMapping(value = "list",method = RequestMethod.GET)
+    public String list(HttpServletRequest request) {
+//        return new ModelAndView("com/jeecg/com/emailSellResponseOthersList");
+
+        return "webpage/com/jeecg/com/emailSellResponseOthersList";
+
     }
 
     /**
@@ -50,7 +56,7 @@ public class EmailSellResponseOthersController {
      * @param response
      * @param dataGrid
      */
-    @RequestMapping(params = "datagrid")
+    @RequestMapping(value = "datagrid",method = RequestMethod.GET)
     public void datagrid(EmailSellResponseOthers emailSellResponseOthers, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 //        CriteriaQuery cq = new CriteriaQuery(EmailSellResponseOthersEntity.class, dataGrid);
 //        //查询条件组装器
@@ -65,7 +71,7 @@ public class EmailSellResponseOthersController {
      *
      * @return
      */
-    @RequestMapping(params = "doDel")
+    @RequestMapping(value = "doDel",method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson doDel(EmailSellResponseOthers emailSellResponseOthers, HttpServletRequest request) {
         String message = null;
@@ -89,7 +95,7 @@ public class EmailSellResponseOthersController {
      *
      * @return
      */
-    @RequestMapping(params = "doBatchDel")
+    @RequestMapping(value = "doBatchDel",method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
         String message = null;
@@ -118,7 +124,7 @@ public class EmailSellResponseOthersController {
      * @param
      * @return
      */
-    @RequestMapping(params = "doAdd")
+    @RequestMapping(value = "doAdd",method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson doAdd(EmailSellResponseOthers emailSellResponseOthers, HttpServletRequest request) {
         String message = null;
@@ -140,7 +146,7 @@ public class EmailSellResponseOthersController {
      * @param
      * @return
      */
-    @RequestMapping(params = "doUpdate")
+    @RequestMapping(value = "doUpdate",method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson doUpdate(EmailSellResponseOthers emailSellResponseOthers, HttpServletRequest request) {
         String message = null;
@@ -157,16 +163,16 @@ public class EmailSellResponseOthersController {
     }
 
 
-    /**
-     * 导入功能跳转
-     *
-     * @return
-     */
-    @RequestMapping(params = "upload")
-    public ModelAndView upload(HttpServletRequest req) {
-        req.setAttribute("controller_name", "emailSellResponseOthersController");
-        return new ModelAndView("common/upload/pub_excel_upload");
-    }
+//    /**
+//     * 导入功能跳转
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "upload",method = RequestMethod.GET)
+//    public ModelAndView upload(HttpServletRequest req) {
+//        req.setAttribute("controller_name", "emailSellResponseOthersController");
+//        return new ModelAndView("common/upload/pub_excel_upload");
+//    }
 
 
 }

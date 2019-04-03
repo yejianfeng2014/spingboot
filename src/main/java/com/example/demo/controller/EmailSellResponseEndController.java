@@ -7,9 +7,11 @@ import com.example.demo.bean.mysql.EmailSellResponseEnd;
 import com.example.demo.model.json.AjaxJson;
 import com.example.demo.model.json.DataGrid;
 import com.example.demo.service.EmailSellResponseEndServiceI;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/emailSellResponseEndController")
+@Api(tags = "emailSellResponseEndController", description = "邮件回复模板结束部分的管理功能")
 public class EmailSellResponseEndController {
 	private static final Logger logger = LoggerFactory.getLogger(EmailSellResponseEndController.class);
 
@@ -40,9 +43,11 @@ public class EmailSellResponseEndController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(params = "list")
-	public ModelAndView list(HttpServletRequest request) {
-		return new ModelAndView("com/jeecg/com/emailSellResponseEndList");
+	@RequestMapping(value = "list",method = RequestMethod.GET)
+	public String list(HttpServletRequest request) {
+//		return new ModelAndView("com/jeecg/com/emailSellResponseEndList");
+
+        return "webpage/com/jeecg/com/emailSellResponseEndList";
 	}
 
 	/**
@@ -53,7 +58,7 @@ public class EmailSellResponseEndController {
 	 * @param dataGrid
 	 * @param user
 	 */
-	@RequestMapping(params = "datagrid")
+	@RequestMapping(value = "datagrid",method = RequestMethod.GET)
 	public void datagrid(EmailSellResponseEnd emailSellResponseEnd, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 //		CriteriaQuery cq = new CriteriaQuery(EmailSellResponseEndEntity.class, dataGrid);
 		//查询条件组装器
@@ -68,7 +73,7 @@ public class EmailSellResponseEndController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(params = "doDel")
+	@RequestMapping(value = "doDel",method = RequestMethod.GET)
 	@ResponseBody
 	public AjaxJson doDel(EmailSellResponseEnd emailSellResponseEnd, HttpServletRequest request) {
 		String message = null;
@@ -93,7 +98,7 @@ public class EmailSellResponseEndController {
 	 * 
 	 * @return
 	 */
-	 @RequestMapping(params = "doBatchDel")
+	 @RequestMapping(value = "doBatchDel",method = RequestMethod.GET)
 	@ResponseBody
 	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
 		String message = null;
@@ -120,7 +125,7 @@ public class EmailSellResponseEndController {
 	 * @param
 	 * @return
 	 */
-	@RequestMapping(params = "doAdd")
+	@RequestMapping(value = "doAdd",method = RequestMethod.GET)
 	@ResponseBody
 	public AjaxJson doAdd(EmailSellResponseEnd emailSellResponseEnd, HttpServletRequest request) {
 		String message = null;
@@ -142,7 +147,7 @@ public class EmailSellResponseEndController {
 	 * @param ids
 	 * @return
 	 */
-	@RequestMapping(params = "doUpdate")
+	@RequestMapping(value = "doUpdate",method = RequestMethod.GET)
 	@ResponseBody
 	public AjaxJson doUpdate(EmailSellResponseEnd emailSellResponseEnd, HttpServletRequest request) {
 		String message = null;
@@ -156,18 +161,6 @@ public class EmailSellResponseEndController {
 		}
 		j.setMsg(message);
 		return j;
-	}
-	
-
-	/**
-	 * 导入功能跳转
-	 * 
-	 * @return
-	 */
-	@RequestMapping(params = "upload")
-	public ModelAndView upload(HttpServletRequest req) {
-		req.setAttribute("controller_name","emailSellResponseEndController");
-		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 
 	

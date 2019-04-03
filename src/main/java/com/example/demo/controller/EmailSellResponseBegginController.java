@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.example.demo.bean.mysql.EmailSellResponseBeggin;
 import com.example.demo.model.json.DataGrid;
 import com.example.demo.service.EmailSellResponseBegginServiceI;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/emailSellResponseBegginController")
+@Api(tags = "emailSellResponseBegginController", description = "邮件回复模板的管理功能")
 public class EmailSellResponseBegginController {
 
     private static final Logger logger = LoggerFactory.getLogger(EmailSellResponseBegginController.class);
