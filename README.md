@@ -31,6 +31,10 @@ http://localhost:8888/AI_customer_service/emailSellResponseEndController/list
 http://localhost:8888/AI_customer_service/emailSellResponseOthersController/list
 
 
-http://localhost:8888/AI_customer_service/emailSellResponseEndController/list
 
 
+#使用过程描述：
+1,修改application.proproperties 的数据库访问路径
+2,然后打包，mvn clean package -DskipTests，会在target 目录下生成 ***.war 文件
+3, 运行，java -jar  ***.war 
+4, 访问 http://localhost:8888/AI_customer_service/swagger-ui.html#

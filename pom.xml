@@ -5,10 +5,10 @@
 
     <groupId>com.example</groupId>
     <artifactId>demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>0.0.1</version>
+    <packaging>war</packaging>
 
-    <name>demo1</name>
+    <name>AI_customer_service</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -38,11 +38,11 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -201,12 +201,29 @@
     </dependencies>
 
     <build>
+
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/webapp</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+        </resources>
+
+
+        <finalName>AI_customer_service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
 
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
