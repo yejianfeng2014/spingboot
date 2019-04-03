@@ -3,7 +3,7 @@ package com.example.demo.bean.mysql;
 public class EmailSellResponseMid {
     private String id;
 
-    private String contenType;
+    private String contentType;
 
     private String contentCn;
 
@@ -17,12 +17,12 @@ public class EmailSellResponseMid {
         this.id = id == null ? null : id.trim();
     }
 
-    public String getContenType() {
-        return contenType;
+    public String getContentType() {
+        return contentType;
     }
 
-    public void setContenType(String contenType) {
-        this.contenType = contenType == null ? null : contenType.trim();
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public String getContentCn() {
