@@ -44,4 +44,50 @@
       </if>
     </trim>
   </insert>
+
+
+
+
+
+  <select id="total" parameterType="long" resultType="long">
+    SELECT count(1) FROM email_sell_response_mid
+  </select>
+
+  <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
+        select * from email_sell_response_mid limit #{currIndex} , #{pageSize}
+</select>
+
+
+  <update id="update" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
+    update email_sell_response_mid
+    <set >
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="contentCn != null" >
+        content_cn = #{contentCn,jdbcType=VARCHAR},
+      </if>
+
+      <if test="contentResponse != null" >
+        content_response = #{contentResponse,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from email_sell_response_mid
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+
+
+
+
+
+
 </mapper>

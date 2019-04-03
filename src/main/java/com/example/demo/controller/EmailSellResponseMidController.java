@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import com.example.demo.bean.mysql.EmailSellResponseEnd;
 import com.example.demo.bean.mysql.EmailSellResponseMid;
 import com.example.demo.model.json.AjaxJson;
 import com.example.demo.model.json.DataGrid;
@@ -13,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,54 +42,37 @@ public class EmailSellResponseMidController {
 	 * @return
 	 */
 	@RequestMapping(value = "list",method = RequestMethod.GET)
-	public String list(HttpServletRequest request) {
-//		return new ModelAndView("com/jeecg/com/emailSellResponseMidList");
-
+	public String list( ) {
         return "webpage/com/jeecg/com/emailSellResponseMidList";
 	}
 
 	/**
 	 * easyui AJAX请求数据
 	 * 
-	 * @param request
-	 * @param response
 	 * @param dataGrid
 	 * @param
 	 */
 	@RequestMapping(value = "datagrid",method = RequestMethod.GET)
     @ResponseBody
-	public Object datagrid(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-//		CriteriaQuery cq = new CriteriaQuery(EmailSellResponseMidEntity.class, dataGrid);
-//		//查询条件组装器
-//		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, emailSellResponseMid, request.getParameterMap());
-//		cq.add();
-//		this.emailSellResponseMidService.getDataGridReturn(cq, true);
-//		TagUtil.datagrid(response, dataGrid);
+	public Object datagrid( DataGrid dataGrid) {
+		AjaxJson j = new AjaxJson();
+		try {
+			int page = dataGrid.getPage();
+			int rows = dataGrid.getRows();
+			List<EmailSellResponseMid> emailSellResponseBeggins = emailSellResponseMidService.queryStudentsBySql(page, rows);
+			long l1 = emailSellResponseMidService.totalSum();
+			Map<String, Object> stringObjectHashMap = new HashMap<>();
+			stringObjectHashMap.put("total", l1);
+			stringObjectHashMap.put("rows", emailSellResponseBeggins);
+			stringObjectHashMap.put("success",false);
+			logger.info("datagrid");
+			return stringObjectHashMap;
+		} catch (Exception e) {
+			j.setMsg("datagrid query success");
+			e.printStackTrace();
+		}
+		return j;
 
-
-
-        System.out.println(dataGrid.toString());
-        List<EmailSellResponseMid> l = new ArrayList();
-        for (int i = 0; i < 24; i++) {
-            EmailSellResponseMid e = new EmailSellResponseMid();
-//            e.s
-            e.setContentCn("sfdf");
-            e.setId("id");
-            e.setContentResponse("sss");
-//            e.setContentType("fdf");
-            l.add(e);
-        }
-
-        Map<String, Object> stringObjectHashMap = new HashMap<>();
-
-
-        stringObjectHashMap.put("total", 24);
-        stringObjectHashMap.put("rows", l);
-
-
-        System.out.println(123);
-
-        return stringObjectHashMap;
 
 
 
@@ -106,18 +85,16 @@ public class EmailSellResponseMidController {
 	 */
 	@RequestMapping(value = "doDel",method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxJson doDel(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request) {
+	public AjaxJson doDel(EmailSellResponseMid emailSellResponseMid) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-//		emailSellResponseMid = systemService.getEntity(EmailSellResponseMidEntity.class, emailSellResponseMid.getId());
 		message = "email_sell_response_mid删除成功";
 		try{
 			emailSellResponseMidService.delete(emailSellResponseMid);
-//			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
+			logger.info("doDel");
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "email_sell_response_mid删除失败";
-//			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
@@ -130,7 +107,7 @@ public class EmailSellResponseMidController {
 	 */
 	 @RequestMapping(value = "doBatchDel",method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
+	public AjaxJson doBatchDel(String ids){
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "email_sell_response_mid删除成功";
@@ -141,6 +118,7 @@ public class EmailSellResponseMidController {
                 emailSellResponseMid.setId(id);
                 emailSellResponseMidService.delete(emailSellResponseMid);
 			}
+			logger.info("doBatchDel");
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "email_sell_response_mid删除失败";
@@ -158,12 +136,13 @@ public class EmailSellResponseMidController {
 	 */
 	@RequestMapping(value = "doAdd",method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxJson doAdd(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request) {
+	public AjaxJson doAdd(EmailSellResponseMid emailSellResponseMid) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "email_sell_response_mid添加成功";
 		try{
 			emailSellResponseMidService.save(emailSellResponseMid);
+			logger.info("doAdd");
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "email_sell_response_mid添加失败";
@@ -180,12 +159,13 @@ public class EmailSellResponseMidController {
 	 */
 	@RequestMapping(value = "doUpdate",method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxJson doUpdate(EmailSellResponseMid emailSellResponseMid, HttpServletRequest request) {
+	public AjaxJson doUpdate(EmailSellResponseMid emailSellResponseMid) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "email_sell_response_mid更新成功";
 		try {
 			emailSellResponseMidService.saveOrUpdate(emailSellResponseMid);
+			logger.info("doUpdate");
 		} catch (Exception e) {
 			e.printStackTrace();
 			message = "email_sell_response_mid更新失败";
@@ -193,19 +173,6 @@ public class EmailSellResponseMidController {
 		j.setMsg(message);
 		return j;
 	}
-	
 
-//	/**
-//	 * 导入功能跳转
-//	 *
-//	 * @return
-//	 */
-//	@RequestMapping(value = "upload")
-//	public ModelAndView upload(HttpServletRequest req) {
-//		req.setAttribute("controller_name","emailSellResponseMidController");
-//		return new ModelAndView("common/upload/pub_excel_upload");
-//	}
-
-	
 	
 }

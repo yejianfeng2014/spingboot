@@ -55,6 +55,20 @@ public class EmailSellResponseBegginController {
     @RequestMapping(value = "datagrid", method = RequestMethod.GET)
     @ResponseBody
     public Object datagrid(DataGrid dataGrid) {
+        AjaxJson j = new AjaxJson();
+        try {
+            Map<String, Object> stringObjectHashMap = getStringObjectMap(dataGrid);
+
+            logger.info("datagrid");
+            return stringObjectHashMap;
+        } catch (Exception e) {
+            j.setMsg("datagrid query success");
+            e.printStackTrace();
+        }
+        return j;
+    }
+
+    public Map<String, Object> getStringObjectMap(DataGrid dataGrid) {
         int page = dataGrid.getPage();
         int rows = dataGrid.getRows();
         List<EmailSellResponseBeggin> emailSellResponseBeggins = emailSellResponseBegginService.queryStudentsBySql(page, rows);
@@ -62,10 +76,8 @@ public class EmailSellResponseBegginController {
         Map<String, Object> stringObjectHashMap = new HashMap<>();
         stringObjectHashMap.put("total", l1);
         stringObjectHashMap.put("rows", emailSellResponseBeggins);
-
-        logger.info("datagrid");
+        stringObjectHashMap.put("success",false);
         return stringObjectHashMap;
-
     }
 
     /**

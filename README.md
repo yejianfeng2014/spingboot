@@ -21,7 +21,16 @@ mvn install:install-file -Dfile=./javamitie.jar -DgroupId=orderplus.com.cn -Dart
 mybatis-generator:generate –e 
 
 
+修改批量删除的方法，因为采用循环一个一个删除，会出现中间中断删了一部分的情况
+
+
 # 添加了项目路径后的访问路径如下：
 http://localhost:8888/AI_customer_service/emailSellResponseBegginController/list
+http://localhost:8888/AI_customer_service/emailSellResponseMidController/list
+http://localhost:8888/AI_customer_service/emailSellResponseEndController/list
+http://localhost:8888/AI_customer_service/emailSellResponseOthersController/list
+
+
+http://localhost:8888/AI_customer_service/emailSellResponseEndController/list
 
 

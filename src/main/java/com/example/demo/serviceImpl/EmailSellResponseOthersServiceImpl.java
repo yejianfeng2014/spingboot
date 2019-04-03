@@ -1,34 +1,51 @@
 package com.example.demo.serviceImpl;
 import com.example.demo.bean.mysql.EmailSellResponseOthers;
+import com.example.demo.dao.mysql.EmailSellResponseOthersMapper;
 import com.example.demo.service.EmailSellResponseOthersServiceI;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.io.Serializable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 @Service("emailSellResponseOthersService")
 @Transactional
 public class EmailSellResponseOthersServiceImpl implements EmailSellResponseOthersServiceI {
 
 	@Autowired
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	private EmailSellResponseOthersMapper mapper;
 	
  	public void delete(EmailSellResponseOthers entity) throws Exception{
-// 		super.delete(entity);
+ 		mapper.deleteById(entity.getId());
 
  	}
  	
  	public Serializable save(EmailSellResponseOthers entity) throws Exception{
-// 		Serializable t = super.save(entity);
+ 		mapper.insert(entity);
  		return null;
  	}
  	
  	public void saveOrUpdate(EmailSellResponseOthers entity) throws Exception{
+ 		mapper.update(entity);
 // 		super.saveOrUpdate(entity);
  	}
- 	
+
+	@Override
+	public long totalSum() {
+		long total = mapper.total();
+		return total;
+	}
+
+	@Override
+	public List<EmailSellResponseOthers> queryStudentsBySql(int currPage, int pageSize) {
+
+		Map<String, Object> data = new HashMap<>();
+		data.put("currIndex", (currPage-1)*pageSize);
+		data.put("pageSize", pageSize);
+		List<EmailSellResponseOthers> emailSellResponseEnds = mapper.queryPageBySql(data);
+		return emailSellResponseEnds;
+
+	}
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.demo.dao.mysql.EmailSellResponseBegginMapper" >
   <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
-    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
     <result column="content_type" property="contentType" jdbcType="VARCHAR" />
     <result column="content_cn" property="contentCn" jdbcType="VARCHAR" />
     <result column="content_response" property="contentResponse" jdbcType="VARCHAR" />
@@ -12,9 +12,10 @@
   <insert id="insert" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
     insert into email_sell_response_beggin (id, content_type, content_cn, 
       content_response)
-    values (#{id,jdbcType=VARCHAR}, #{contentType,jdbcType=VARCHAR}, #{contentCn,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{contentType,jdbcType=VARCHAR}, #{contentCn,jdbcType=VARCHAR},
       #{contentResponse,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
     insert into email_sell_response_beggin
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -33,7 +34,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="contentType != null" >
         #{contentType,jdbcType=VARCHAR},
@@ -46,4 +47,43 @@
       </if>
     </trim>
   </insert>
+
+  <select id="total" parameterType="long" resultType="long">
+    SELECT count(1) FROM email_sell_response_beggin
+  </select>
+
+  <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
+        select * from email_sell_response_beggin limit #{currIndex} , #{pageSize}
+</select>
+
+
+  <update id="update" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
+    update email_sell_response_beggin
+    <set >
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="contentCn != null" >
+        content_cn = #{contentCn,jdbcType=VARCHAR},
+      </if>
+
+      <if test="contentResponse != null" >
+        content_response = #{contentResponse,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from email_sell_response_beggin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="getALL" parameterType="map" resultMap="BaseResultMap">
+        select * from email_sell_response_beggin
+</select>
+
 </mapper>

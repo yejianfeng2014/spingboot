@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import com.example.demo.bean.mysql.EmailSellResponseMid;
 import com.example.demo.bean.mysql.EmailSellResponseOthers;
 import com.example.demo.model.json.AjaxJson;
 import com.example.demo.model.json.DataGrid;
@@ -13,14 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,53 +45,35 @@ public class EmailSellResponseOthersController {
      */
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public String list(HttpServletRequest request) {
-//        return new ModelAndView("com/jeecg/com/emailSellResponseOthersList");
-
         return "webpage/com/jeecg/com/emailSellResponseOthersList";
-
     }
 
     /**
      * easyui AJAX请求数据
      *
-     * @param request
-     * @param response
      * @param dataGrid
      */
     @RequestMapping(value = "datagrid",method = RequestMethod.GET)
     @ResponseBody
-    public Object datagrid(EmailSellResponseOthers emailSellResponseOthers, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-//        CriteriaQuery cq = new CriteriaQuery(EmailSellResponseOthersEntity.class, dataGrid);
-//        //查询条件组装器
-//        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, emailSellResponseOthers, request.getParameterMap());
-//        cq.add();
-//        this.emailSellResponseOthersService.getDataGridReturn(cq, true);
-//        TagUtil.datagrid(response, dataGrid);
+    public Object datagrid( DataGrid dataGrid) {
+        AjaxJson j = new AjaxJson();
+        try {
+            int page = dataGrid.getPage();
+            int rows = dataGrid.getRows();
+            List<EmailSellResponseOthers> emailSellResponseBeggins = emailSellResponseOthersService.queryStudentsBySql(page, rows);
+            long l1 = emailSellResponseOthersService.totalSum();
+            Map<String, Object> stringObjectHashMap = new HashMap<>();
+            stringObjectHashMap.put("total", l1);
+            stringObjectHashMap.put("rows", emailSellResponseBeggins);
+            stringObjectHashMap.put("success",false);
 
-        System.out.println(dataGrid.toString());
-
-        List<EmailSellResponseOthers> l = new ArrayList();
-        for (int i = 0; i < 24; i++) {
-            EmailSellResponseOthers e = new EmailSellResponseOthers();
-//            e.s
-            e.setContentCn("sfdf");
-            e.setId("id");
-//            e.setContentResponse("sss");
-//            e.setContentType("fdf");
-            l.add(e);
+            logger.info("datagrid");
+            return stringObjectHashMap;
+        } catch (Exception e) {
+            j.setMsg("datagrid query success");
+            e.printStackTrace();
         }
-
-        Map<String, Object> stringObjectHashMap = new HashMap<>();
-
-
-        stringObjectHashMap.put("total", 24);
-        stringObjectHashMap.put("rows", l);
-
-
-        System.out.println(123);
-
-        return stringObjectHashMap;
-
+        return j;
 
 
     }
@@ -111,11 +89,10 @@ public class EmailSellResponseOthersController {
         String message = null;
         AjaxJson j = new AjaxJson();
 
-//        emailSellResponseOthers = systemService.getEntity(EmailSellResponseOthersEntity.class, emailSellResponseOthers.getId());
-
         message = "email_sell_response_others删除成功";
         try {
             emailSellResponseOthersService.delete(emailSellResponseOthers);
+            logger.info("doDel");
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_others删除失败";
@@ -143,6 +120,8 @@ public class EmailSellResponseOthersController {
 
                 emailSellResponseOthersService.delete(emailSellResponseOthers);
             }
+
+           logger.info("doBatchDel");
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_others删除失败";
@@ -166,6 +145,7 @@ public class EmailSellResponseOthersController {
         message = "email_sell_response_others添加成功";
         try {
             emailSellResponseOthersService.save(emailSellResponseOthers);
+            logger.info("doAdd");
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_others添加失败";
@@ -188,6 +168,8 @@ public class EmailSellResponseOthersController {
         message = "email_sell_response_others更新成功";
         try {
             emailSellResponseOthersService.saveOrUpdate(emailSellResponseOthers);
+            logger.info("doUpdate");
+
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_others更新失败";

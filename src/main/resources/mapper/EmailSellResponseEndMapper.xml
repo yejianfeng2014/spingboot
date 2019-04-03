@@ -13,35 +13,44 @@
     values (#{id,jdbcType=VARCHAR}, #{contentType,jdbcType=VARCHAR}, #{contentCn,jdbcType=VARCHAR}, 
       #{contentResponse,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.EmailSellResponseEnd" >
-    insert into email_sell_response_end
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
+
+
+
+
+  <select id="total" parameterType="long" resultType="long">
+    SELECT count(1) FROM email_sell_response_end
+  </select>
+
+  <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
+        select * from email_sell_response_end limit #{currIndex} , #{pageSize}
+</select>
+
+
+  <update id="update" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
+    update email_sell_response_end
+    <set >
       <if test="contentType != null" >
-        content_type,
+        content_type = #{contentType,jdbcType=VARCHAR},
       </if>
       <if test="contentCn != null" >
-        content_cn,
+        content_cn = #{contentCn,jdbcType=VARCHAR},
       </if>
+
       <if test="contentResponse != null" >
-        content_response,
+        content_response = #{contentResponse,jdbcType=VARCHAR},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="contentType != null" >
-        #{contentType,jdbcType=VARCHAR},
-      </if>
-      <if test="contentCn != null" >
-        #{contentCn,jdbcType=VARCHAR},
-      </if>
-      <if test="contentResponse != null" >
-        #{contentResponse,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from email_sell_response_end
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+
 </mapper>
