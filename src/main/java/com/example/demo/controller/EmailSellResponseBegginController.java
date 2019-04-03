@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.example.demo.bean.mysql.EmailSellResponseBeggin;
+import com.example.demo.model.json.AjaxJson;
 import com.example.demo.model.json.DataGrid;
 import com.example.demo.service.EmailSellResponseBegginServiceI;
 import io.swagger.annotations.Api;
@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -37,63 +36,34 @@ public class EmailSellResponseBegginController {
 
     @Autowired
     private EmailSellResponseBegginServiceI emailSellResponseBegginService;
-//	@Autowired
-//	private SystemService systemService;
-
 
     /**
      * email_sell_response_beggin列表 页面跳转
      *
      * @return
      */
-    @RequestMapping(value = "list",method = RequestMethod.GET)
-    public String list(HttpServletRequest request) {
-//        return new ModelAndView("com/jeecg/com/emailSellResponseBegginList");
-
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public String list() {
         return "webpage/com/jeecg/com/emailSellResponseBegginList";
     }
 
     /**
      * easyui AJAX请求数据
      *
-     * @param request
-     * @param response
      * @param dataGrid
      */
-    @RequestMapping(value = "datagrid",method = RequestMethod.GET)
+    @RequestMapping(value = "datagrid", method = RequestMethod.GET)
     @ResponseBody
-    public Object datagrid(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-//		CriteriaQuery cq = new CriteriaQuery(EmailSellResponseBegginEntity.class, dataGrid);
-        //查询条件组装器
-//		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, emailSellResponseBeggin, request.getParameterMap());
-//		cq.add();
-
-
-//		this.emailSellResponseBegginService.getDataGridReturn(cq, true);
-
-//		TagUtil.datagrid(response, dataGrid);
-
-        System.out.println(dataGrid.toString());
-        List<EmailSellResponseBeggin> l = new ArrayList();
-        for (int i=0;i<24;i++){
-            EmailSellResponseBeggin e = new EmailSellResponseBeggin();
-            e.setContentCn("sfdf");
-            e.setId("id");
-            e.setContentResponse("sss");
-            e.setContentType("fdf");
-            l.add(e);
-        }
-
+    public Object datagrid(DataGrid dataGrid) {
+        int page = dataGrid.getPage();
+        int rows = dataGrid.getRows();
+        List<EmailSellResponseBeggin> emailSellResponseBeggins = emailSellResponseBegginService.queryStudentsBySql(page, rows);
+        long l1 = emailSellResponseBegginService.totalSum();
         Map<String, Object> stringObjectHashMap = new HashMap<>();
+        stringObjectHashMap.put("total", l1);
+        stringObjectHashMap.put("rows", emailSellResponseBeggins);
 
-
-        stringObjectHashMap.put("total",24);
-        stringObjectHashMap.put("rows",l);
-
-
-
-        System.out.println(123);
-
+        logger.info("datagrid");
         return stringObjectHashMap;
 
     }
@@ -103,28 +73,24 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "del",method = RequestMethod.POST)
+    @RequestMapping(value = "doDel", method = RequestMethod.POST)
     @ResponseBody
-    public Object doDel(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
+    public AjaxJson doDel(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
         String message = null;
 
-        Map resultMap = new HashMap();
-
-//		AjaxJson j = new AjaxJson();
-//		emailSellResponseBeggin = systemService.getEntity(EmailSellResponseBegginEntity.class, emailSellResponseBeggin.getId());
+        AjaxJson j = new AjaxJson();
         message = "email_sell_response_beggin删除成功";
         try {
             emailSellResponseBegginService.delete(emailSellResponseBeggin);
-            resultMap.put("success", true);
-            resultMap.put("msg", message);
-
+            j.setMsg(message);
+            logger.info("doDel");
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_beggin删除失败";
-            resultMap.put("success", false);
-            resultMap.put("msg", message);
+            j.setMsg(message);
+            j.setSuccess(false);
         }
-        return resultMap;
+        return j;
     }
 
     /**
@@ -132,26 +98,25 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doBatchDel",method = RequestMethod.POST)
+    @RequestMapping(value = "doBatchDel", method = RequestMethod.POST)
     @ResponseBody
-    public Object doBatchDel(String ids, HttpServletRequest request) {
+    public AjaxJson doBatchDel(String ids) {
         String message = null;
-        Map j = new HashMap();
+        AjaxJson j = new AjaxJson();
         message = "email_sell_response_beggin删除成功";
         try {
-//			for(String id:ids.split(",")){
-//				EmailSellResponseBegginEntity emailSellResponseBeggin = systemService.getEntity(EmailSellResponseBegginEntity.class,
-//				id
-//				);
-//				emailSellResponseBegginService.delete(emailSellResponseBeggin);
-////				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
-//			}
+			for(String id:ids.split(",")){
+                EmailSellResponseBeggin emailSellResponseBeggin = new EmailSellResponseBeggin();
+                emailSellResponseBeggin.setId(id);
+                emailSellResponseBegginService.delete(emailSellResponseBeggin);
+			}
+		j.setMsg(message);
+            logger.info("doBatchDel");
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_beggin删除失败";
-//			throw new BusinessException(e.getMessage());
+            j.setMsg(message);
         }
-//		j.setMsg(message);
         return j;
     }
 
@@ -161,21 +126,22 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doAdd",method = RequestMethod.POST)
+    @RequestMapping(value = "doAdd", method = RequestMethod.POST)
     @ResponseBody
-    public Object doAdd(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
+    public AjaxJson doAdd(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
         String message = null;
-        Map j = new HashMap();
+        AjaxJson j = new AjaxJson();
         message = "email_sell_response_beggin添加成功";
         try {
             emailSellResponseBegginService.save(emailSellResponseBeggin);
-//			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
+
+            j.setMsg(message);
+            logger.info("doAdd");
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_beggin添加失败";
-//			throw new BusinessException(e.getMessage());
+            j.setMsg(message);
         }
-//		j.setMsg(message);
         return j;
     }
 
@@ -184,20 +150,21 @@ public class EmailSellResponseBegginController {
      *
      * @return
      */
-    @RequestMapping(value = "doUpdate",method = RequestMethod.POST)
+    @RequestMapping(value = "doUpdate", method = RequestMethod.POST)
     @ResponseBody
-    public Object doUpdate(EmailSellResponseBeggin emailSellResponseBeggin, HttpServletRequest request) {
+    public AjaxJson doUpdate(EmailSellResponseBeggin emailSellResponseBeggin) {
         String message = null;
-        Object j = new Object();
+        AjaxJson j = new AjaxJson();
         message = "email_sell_response_beggin更新成功";
-//		EmailSellResponseBegginEntity t = emailSellResponseBegginService.get(EmailSellResponseBegginEntity.class, emailSellResponseBeggin.getId());
         try {
-//			MyBeanUtils.copyBeanNotNull2Bean(emailSellResponseBeggin, t);
-
             emailSellResponseBegginService.saveOrUpdate(emailSellResponseBeggin);
+            logger.info("doUpdate");
+            j.setMsg(message);
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_beggin更新失败";
+
+            j.setMsg(message);
         }
         return j;
     }

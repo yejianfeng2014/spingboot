@@ -118,15 +118,15 @@
 				},
 				url:{
 					list:'${webRoot}/emailSellResponseBegginController/datagrid?',
-					del:'${webRoot}/emailSellResponseBegginController.do?doDel',
-					batchDel:'${webRoot}/emailSellResponseBegginController.do?doBatchDel',
-					queryDict:'${webRoot}/systemController.do?typeListJson',
-					save:'${webRoot}/emailSellResponseBegginController.do?doAdd',
-					edit:'${webRoot}/emailSellResponseBegginController.do?doUpdate',
+					del:'${webRoot}/emailSellResponseBegginController/doDel?',
+					batchDel:'${webRoot}/emailSellResponseBegginController/doBatchDel?',
+					queryDict:'${webRoot}/systemController/typeListJson',
+					save:'${webRoot}/emailSellResponseBegginController/doAdd?',
+					edit:'${webRoot}/emailSellResponseBegginController/doUpdate?',
 					upload:'${webRoot}/systemController/filedeal.do',
 					downFile:'${webRoot}/img/server/',
-					exportXls:'${webRoot}/emailSellResponseBegginController.do?exportXls&id=',
-					ImportXls:'${webRoot}/emailSellResponseBegginController.do?upload'
+					exportXls:'${webRoot}/emailSellResponseBegginController/exportXls&id=',
+					ImportXls:'${webRoot}/emailSellResponseBegginController/upload'
 				},
 				emailSellResponseBeggins: [],
 				total: 0,

@@ -83,12 +83,15 @@ public class DataGrid {
 		this.page = page;
 	}
 
-//	public int getRows() {
+	public int getRows() {
 //		if(ContextHolderUtils.getRequest()!=null&&ResourceUtil.getParameter("rows")!=null){
 //			return rows;
 //		}
 //		return 10000;
-//	}
+
+		return this.rows;
+
+	}
 
 	public void setRows(int rows) {
 		this.rows = rows;
