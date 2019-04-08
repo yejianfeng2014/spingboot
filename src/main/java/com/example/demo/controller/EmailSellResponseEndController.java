@@ -46,7 +46,7 @@ public class EmailSellResponseEndController {
     public String list(HttpServletRequest request) {
 //		return new ModelAndView("com/jeecg/com/emailSellResponseEndList");
 
-        return "webpage/com/jeecg/com/emailSellResponseEndList";
+        return "webpage/emailSellResponseEndList";
     }
 
     /**

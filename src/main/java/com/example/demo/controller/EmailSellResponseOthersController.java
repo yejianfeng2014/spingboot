@@ -45,7 +45,7 @@ public class EmailSellResponseOthersController {
      */
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public String list(HttpServletRequest request) {
-        return "webpage/com/jeecg/com/emailSellResponseOthersList";
+        return "webpage/emailSellResponseOthersList";
     }
 
     /**

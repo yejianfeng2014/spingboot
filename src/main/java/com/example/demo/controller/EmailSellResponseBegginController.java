@@ -44,7 +44,7 @@ public class EmailSellResponseBegginController {
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String list() {
-        return "webpage/com/jeecg/com/emailSellResponseBegginList";
+        return "webpage/emailSellResponseBegginList";
     }
 
     /**

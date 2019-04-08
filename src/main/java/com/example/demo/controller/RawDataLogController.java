@@ -44,7 +44,7 @@ public class RawDataLogController {
      */
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public ModelAndView list(HttpServletRequest request) {
-        return new ModelAndView("com/jeecg/com/rawDataLogList");
+        return new ModelAndView("webpage/rawDataLogList");
     }
 
     /**

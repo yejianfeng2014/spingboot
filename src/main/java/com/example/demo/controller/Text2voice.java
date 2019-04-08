@@ -29,7 +29,7 @@ public class Text2voice {
     public  String text2voice_index(){
 
 
-        return  "text2voice";
+        return  "webpage/voice";
     }
 
     /**

@@ -45,7 +45,7 @@ public class TEmailController {
      */
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public String list(HttpServletRequest request) {
-        return "webpage/com/jeecg/com/tEmailList";
+        return "webpage//tEmailList";
     }
 
     /**

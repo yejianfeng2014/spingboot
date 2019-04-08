@@ -41,7 +41,7 @@ public class IntentController {
     public String list() {
         // TODO: 2019/4/8  增加这个的跳转页面
 
-        return "webpage/com/jeecg/com/emailSellResponseBegginList";
+        return "webpage/emailSellResponseBegginList";
     }
 
 

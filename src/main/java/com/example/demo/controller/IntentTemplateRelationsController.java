@@ -46,8 +46,8 @@ public class IntentTemplateRelationsController  {
 	 * @return
 	 */
 	@RequestMapping(value  = "list",method = RequestMethod.GET)
-	public ModelAndView list(HttpServletRequest request) {
-		return new ModelAndView("com/jeecg/com/intentTemplateRelationsList");
+	public String list(HttpServletRequest request) {
+		return "webpage/intentTemplateRelationsList";
 	}
 
 	/**

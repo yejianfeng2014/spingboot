@@ -43,7 +43,7 @@ public class EmailSellResponseMidController {
 	 */
 	@RequestMapping(value = "list",method = RequestMethod.GET)
 	public String list( ) {
-        return "webpage/com/jeecg/com/emailSellResponseMidList";
+        return "webpage/emailSellResponseMidList";
 	}
 
 	/**

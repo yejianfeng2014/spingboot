@@ -39,9 +39,10 @@ public class IntentPhraseController  {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value  = "list",method = RequestMethod.GET)
-	public ModelAndView list() {
-		return new ModelAndView("com/jeecg/com/intentPhraseList");
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public String list() {
+
+		return "webpage/intentPhraseList";
 	}
 
 	/**
