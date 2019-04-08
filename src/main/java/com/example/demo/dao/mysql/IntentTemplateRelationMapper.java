@@ -18,7 +18,7 @@ public interface IntentTemplateRelationMapper {
 
     int update(IntentTemplateRelationsEntity user);
 
-    int deleteById(String id);
+    int deleteById(int id);
 
 
 
