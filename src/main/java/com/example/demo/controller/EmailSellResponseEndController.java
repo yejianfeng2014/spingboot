@@ -56,7 +56,7 @@ public class EmailSellResponseEndController {
      */
     @RequestMapping(value = "datagrid", method = RequestMethod.GET)
     @ResponseBody
-    public Object datagrid( DataGrid dataGrid) {
+    public Object datagrid(DataGrid dataGrid) {
 
         AjaxJson j = new AjaxJson();
         try {
@@ -67,12 +67,13 @@ public class EmailSellResponseEndController {
             Map<String, Object> stringObjectHashMap = new HashMap<>();
             stringObjectHashMap.put("total", l1);
             stringObjectHashMap.put("rows", emailSellResponseBeggins);
-            stringObjectHashMap.put("success",false);
+            stringObjectHashMap.put("success", true);
             logger.info("datagrid");
             return stringObjectHashMap;
         } catch (Exception e) {
             j.setMsg("datagrid query success");
             e.printStackTrace();
+            j.setSuccess(false);
         }
         return j;
 
@@ -92,14 +93,14 @@ public class EmailSellResponseEndController {
         message = "email_sell_response_end删除成功";
         try {
             emailSellResponseEndService.delete(emailSellResponseEnd);
-            j.setMsg(message);
+//            j.setMsg(message);
             logger.info("doDel");
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_end删除失败";
-
-            j.setMsg(message);
+            j.setSuccess(false);
         }
+        j.setMsg(message);
         return j;
     }
 
@@ -120,9 +121,12 @@ public class EmailSellResponseEndController {
                 emailSellResponseEnd.setId(id);
                 emailSellResponseEndService.delete(emailSellResponseEnd);
             }
+
+
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_end删除失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -147,6 +151,7 @@ public class EmailSellResponseEndController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_end添加失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -170,6 +175,8 @@ public class EmailSellResponseEndController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_end更新失败";
+
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;

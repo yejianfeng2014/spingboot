@@ -21,5 +21,11 @@ public interface IntentTemplateRelationMapper {
     int deleteById(int id);
 
 
+    List<IntentTemplateRelationsEntity> queryByIntentId(Map<String, Object> data);
+
+
+    List<IntentTemplateRelationsEntity>  queryByintentPhrase(String text);
+
+
 
 }

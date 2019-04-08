@@ -76,6 +76,7 @@ public class IntentTemplateRelationsController  {
 		} catch (Exception e) {
 			j.setMsg("datagrid query success");
 			e.printStackTrace();
+			j.setSuccess(false);
 		}
 		return j;
 
@@ -98,6 +99,7 @@ public class IntentTemplateRelationsController  {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "intent_template_relations删除失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -123,6 +125,7 @@ public class IntentTemplateRelationsController  {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "intent_template_relations删除失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -146,6 +149,7 @@ public class IntentTemplateRelationsController  {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "intent_template_relations添加失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -168,6 +172,7 @@ public class IntentTemplateRelationsController  {
 		} catch (Exception e) {
 			e.printStackTrace();
 			message = "intent_template_relations更新失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;

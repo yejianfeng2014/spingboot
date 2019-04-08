@@ -24,4 +24,7 @@ public interface IntentPhraseMapper {
 
 
 
+    List<IntentPhraseEntity> queryByPhrase(String text);
+
+
 }

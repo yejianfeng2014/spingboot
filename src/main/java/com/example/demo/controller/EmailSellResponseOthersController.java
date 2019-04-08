@@ -72,6 +72,7 @@ public class EmailSellResponseOthersController {
         } catch (Exception e) {
             j.setMsg("datagrid query success");
             e.printStackTrace();
+            j.setSuccess(false);
         }
         return j;
 
@@ -96,6 +97,7 @@ public class EmailSellResponseOthersController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_others删除失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -125,6 +127,7 @@ public class EmailSellResponseOthersController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_others删除失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -149,6 +152,7 @@ public class EmailSellResponseOthersController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_others添加失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -173,6 +177,7 @@ public class EmailSellResponseOthersController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_others更新失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;

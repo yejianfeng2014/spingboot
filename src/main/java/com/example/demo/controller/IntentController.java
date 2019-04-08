@@ -70,6 +70,7 @@ public class IntentController {
         } catch (Exception e) {
             j.setMsg("datagrid query success");
             e.printStackTrace();
+            j.setSuccess(false);
         }
         return j;
 
@@ -92,6 +93,7 @@ public class IntentController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "intent_phrase添加失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -114,6 +116,7 @@ public class IntentController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "intent_phrase删除失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -141,6 +144,7 @@ public class IntentController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "intente删除失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -164,6 +168,7 @@ public class IntentController {
         } catch (Exception e) {
             e.printStackTrace();
             message = "intent_phrase更新失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -192,98 +197,6 @@ public class IntentController {
         return null;
 
     }
-
-
-    /*
-
-     */
-/**
- * 增加意图短语
- *
- * @param
- * @return
- *//*
-
-    @RequestMapping(value = "/doAddContent", method = RequestMethod.POST)
-    public void doAddContent(int id, String biaoji) {
-
-        Temail email = new Temail();
-
-        email.setId(id);
-        email.setBiaoji(biaoji);
-
-//        intentDao.updateEmail(email);
-
-    }
-
-    */
-/**
- *
- *//*
-
-
-
-     */
-/**
- * 删除意图短语
- *
- * @param
- * @return
- *//*
-
-    @RequestMapping(value = "/doDelContent", method = RequestMethod.POST)
-    public void doDelContent(int id, String biaoji) {
-
-        Temail email = new Temail();
-
-        email.setId(id);
-        email.setBiaoji(biaoji);
-
-//        intentDao.updateEmail(email);
-
-    }
-
-
-    */
-/**
- * 修改意图短语
- *
- * @param
- * @return
- *//*
-
-    @RequestMapping(value = "/doUpdateContent", method = RequestMethod.POST)
-    public void doUpdateContent(int id, String biaoji) {
-
-        Temail email = new Temail();
-
-        email.setId(id);
-        email.setBiaoji(biaoji);
-//        intentDao.updateEmail(email);
-
-    }
-
-
-
-    */
-/**
- * 查看意图短语
- *
- * @param
- * @return
- *//*
-
-    @RequestMapping(value = "/datagridContent", method = RequestMethod.POST)
-    public void datagridContent(int id, String biaoji) {
-
-        Temail email = new Temail();
-
-        email.setId(id);
-        email.setBiaoji(biaoji);
-//        intentDao.updateEmail(email);
-
-    }
-*/
 
 
 }

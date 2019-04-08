@@ -58,4 +58,26 @@
   </delete>
 
 
+    <select id="queryByIntentId" parameterType="map" resultMap="BaseResultMap">
+
+        select * from intent_template_relations where  intent_id = #{intentId}
+
+
+    </select>
+
+
+    <select id="queryByintentPhrase" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+                SELECT
+            intent_template_relations.*
+        FROM
+            intent_template_relations,
+            intent_phrase
+        WHERE
+            intent_template_relations.intent_id = intent_phrase.intent_id
+        AND intent_phrase.intent_phrase = #{text}
+
+    </select>
+
+
 </mapper>

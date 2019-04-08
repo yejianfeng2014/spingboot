@@ -54,5 +54,9 @@
   </delete>
 
 
+  <select id="queryByPhrase" parameterType="java.lang.String" resultMap="BaseResultMap">
+     select * from intent_phrase  where  intent_phrase = #{intentPhrase,jdbcType=VARCHAR}
+  </select>
+
 
 </mapper>

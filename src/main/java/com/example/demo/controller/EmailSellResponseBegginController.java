@@ -63,6 +63,7 @@ public class EmailSellResponseBegginController {
             return stringObjectHashMap;
         } catch (Exception e) {
             j.setMsg("datagrid query success");
+            j.setSuccess(false);
             e.printStackTrace();
         }
         return j;
@@ -76,7 +77,7 @@ public class EmailSellResponseBegginController {
         Map<String, Object> stringObjectHashMap = new HashMap<>();
         stringObjectHashMap.put("total", l1);
         stringObjectHashMap.put("rows", emailSellResponseBeggins);
-        stringObjectHashMap.put("success",false);
+        stringObjectHashMap.put("success",true);
         return stringObjectHashMap;
     }
 
@@ -147,13 +148,14 @@ public class EmailSellResponseBegginController {
         try {
             emailSellResponseBegginService.save(emailSellResponseBeggin);
 
-            j.setMsg(message);
             logger.info("doAdd");
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_beggin添加失败";
-            j.setMsg(message);
+            j.setSuccess(false);
         }
+
+        j.setMsg(message);
         return j;
     }
 
@@ -171,13 +173,15 @@ public class EmailSellResponseBegginController {
         try {
             emailSellResponseBegginService.saveOrUpdate(emailSellResponseBeggin);
             logger.info("doUpdate");
-            j.setMsg(message);
+
         } catch (Exception e) {
             e.printStackTrace();
             message = "email_sell_response_beggin更新失败";
 
-            j.setMsg(message);
+            j.setSuccess(false);
         }
+
+        j.setMsg(message);
         return j;
     }
 

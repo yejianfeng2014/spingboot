@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.mysql.RawDataLogMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.RawDataLogEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="source_type" property="sourceType" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.bean.mysql.RawDataLogEntity" extends="BaseResultMap" >
+    <result column="raw_text" property="rawText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, source_type, insert_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    raw_text
+  </sql>
+
+
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from raw_data_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from raw_data_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+
+
+  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
+    insert into raw_data_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="insertDate != null" >
+        insert_date,
+      </if>
+      <if test="rawText != null" >
+        raw_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawText != null" >
+        #{rawText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
+    update raw_data_log
+    set source_type = #{sourceType,jdbcType=VARCHAR},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      raw_text = #{rawText,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
+    update raw_data_log
+    set source_type = #{sourceType,jdbcType=VARCHAR},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+
+
+
+ <!-- <insert id="insert" parameterType="com.example.demo.bean.mysql.IntentTemplateRelationsEntity">
+    insert into intent_template_relations (id, intent_id, template_id,
+      intent_id_detail,template_id_detail)
+    values (#{id,jdbcType=INTEGER}, #{intentId,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER},
+      #{intentIdDetail,jdbcType=VARCHAR},#{templateIdDetail,jdbcType=VARCHAR})
+  </insert>-->
+
+
+  <insert id="insert" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
+    insert into raw_data_log (id, source_type,
+      raw_text)
+    values (#{id,jdbcType=BIGINT}, #{sourceType,jdbcType=VARCHAR},
+      #{rawText,jdbcType=LONGVARCHAR})
+  </insert>
+
+
+  <select id="total" parameterType="long" resultType="long">
+    SELECT count(1) FROM raw_data_log
+  </select>
+
+  <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
+        select * from raw_data_log  limit #{currIndex} , #{pageSize}
+</select>
+
+
+
+  <update id="update" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
+    update raw_data_log
+    <set >
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawText != null" >
+        raw_text = #{rawText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <delete id="deleteById" parameterType="java.lang.Long">
+     delete from raw_data_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+
+
+  <!-- <update id="update" parameterType="com.example.demo.bean.mysql.IntentTemplateRelationsEntity">
+     update intent_template_relations
+     <set>
+       <if test="intentId != null">
+         intent_id = #{intentId,jdbcType=INTEGER},
+       </if>
+       <if test="templateId != null">
+         template_id = #{templateId,jdbcType=INTEGER},
+       </if>
+
+       <if test="intentIdDetail != null">
+         intent_id_detail = #{intentIdDetail,jdbcType=VARCHAR},
+       </if>
+
+       <if test="templateIdDetail != null">
+         template_id_detail = #{templateIdDetail,jdbcType=VARCHAR},
+       </if>
+
+
+     </set>
+     where id = #{id,jdbcType=INTEGER}
+   </update>-->
+
+
+
+
+
+
+</mapper>

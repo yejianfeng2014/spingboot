@@ -68,9 +68,11 @@ public class EmailSellResponseMidController {
 			logger.info("datagrid");
 			return stringObjectHashMap;
 		} catch (Exception e) {
-			j.setMsg("datagrid query success");
 			e.printStackTrace();
+			j.setSuccess(false);
+
 		}
+		j.setMsg("datagrid query success");
 		return j;
 
 
@@ -95,6 +97,7 @@ public class EmailSellResponseMidController {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "email_sell_response_mid删除失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -122,6 +125,7 @@ public class EmailSellResponseMidController {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "email_sell_response_mid删除失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -146,6 +150,7 @@ public class EmailSellResponseMidController {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "email_sell_response_mid添加失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -169,6 +174,7 @@ public class EmailSellResponseMidController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			message = "email_sell_response_mid更新失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;

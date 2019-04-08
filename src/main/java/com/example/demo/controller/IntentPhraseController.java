@@ -68,6 +68,7 @@ public class IntentPhraseController  {
 		} catch (Exception e) {
 			j.setMsg("datagrid query success");
 			e.printStackTrace();
+			j.setSuccess(false);
 		}
 		return j;
 
@@ -89,6 +90,7 @@ public class IntentPhraseController  {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "intent_phrase删除失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -114,6 +116,7 @@ public class IntentPhraseController  {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "intent_phrase删除失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -137,6 +140,7 @@ public class IntentPhraseController  {
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "intent_phrase添加失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
@@ -159,6 +163,7 @@ public class IntentPhraseController  {
 		} catch (Exception e) {
 			e.printStackTrace();
 			message = "intent_phrase更新失败";
+			j.setSuccess(false);
 		}
 		j.setMsg(message);
 		return j;
