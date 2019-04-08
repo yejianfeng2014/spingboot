@@ -12,24 +12,27 @@ import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
-@Api(tags = "IntentController", description = "意图管理")
-@RequestMapping(value = "intent")
+@Controller
+@Api(tags = "intentController", description = "意图管理")
+@RequestMapping(value = "intentController")
 public class IntentController {
     private static final Logger logger = LoggerFactory.getLogger(IntentController.class);
 
 
     @Autowired
     private IntentServiceI intentServiceI;
+
+    @Autowired
+    IntentPhraseServiceI intentPhraseServiceI;
 
     /**
      * 意图管理跳转页面
@@ -41,12 +44,12 @@ public class IntentController {
     public String list() {
         // TODO: 2019/4/8  增加这个的跳转页面
 
-        return "webpage/emailSellResponseBegginList";
+        return "webpage/intentList";
     }
 
 
     /**
-     * 增加意图
+     * 查询意图
      *
      * @param
      * @return
@@ -57,6 +60,7 @@ public class IntentController {
 
         AjaxJson j = new AjaxJson();
         try {
+
             int page = dataGrid.getPage();
             int rows = dataGrid.getRows();
             List<IntentEntity> emailSellResponseBeggins = intentServiceI.queryStudentsBySql(page, rows);
@@ -78,12 +82,41 @@ public class IntentController {
 
 
     /**
+     * 根据一个id 返回一个意图的和所有对应的短语
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/getById", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getById(int phraseId) {
+
+        AjaxJson j = new AjaxJson();
+        try {
+            List<IntentPhraseEntity> intentPhraseEntities = intentPhraseServiceI.queryByid(phraseId);
+            Map<String, Object> stringObjectHashMap = new HashMap<>();
+            stringObjectHashMap.put("rows", intentPhraseEntities);
+            j.setAttributes(stringObjectHashMap);
+            logger.info("getById");
+            return stringObjectHashMap;
+        } catch (Exception e) {
+            j.setMsg("datagrid query success");
+            e.printStackTrace();
+            j.setSuccess(false);
+        }
+        return j;
+
+    }
+
+
+    /**
      * 增加意图
      *
      * @param
      * @return
      */
     @RequestMapping(value = "/doAdd", method = RequestMethod.POST)
+    @ResponseBody
     public AjaxJson doAdd(IntentEntity intentEntity) {
         String message = null;
         AjaxJson j = new AjaxJson();
@@ -107,6 +140,7 @@ public class IntentController {
      * @return
      */
     @RequestMapping(value = "/doDel", method = RequestMethod.POST)
+    @ResponseBody
     public AjaxJson doDel(IntentEntity intentEntity) {
         String message = null;
         AjaxJson j = new AjaxJson();

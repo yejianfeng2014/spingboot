@@ -1,5 +1,15 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/context/mytags.jsp"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+%>
+<c:set var="webRoot" value="<%=basePath%>" />
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +55,12 @@
 			    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="handleAdd">新增</el-button>
 			    </el-form-item>
-			    <el-form-item>
+			<%--    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="ExportXls">导出</el-button>
 			    </el-form-item>
 			    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="ImportXls">导入</el-button>
-			    </el-form-item>
+			    </el-form-item>--%>
 			</el-form>
 		</el-row>
 		
@@ -108,16 +118,16 @@
 				filters: {
 				},
 				url:{
-					list:'${webRoot}/intentTemplateRelationsController.do?datagrid',
-					del:'${webRoot}/intentTemplateRelationsController.do?doDel',
-					batchDel:'${webRoot}/intentTemplateRelationsController.do?doBatchDel',
-					queryDict:'${webRoot}/systemController.do?typeListJson',
-					save:'${webRoot}/intentTemplateRelationsController.do?doAdd',
-					edit:'${webRoot}/intentTemplateRelationsController.do?doUpdate',
+					list:'${webRoot}/intentTemplateRelationsController/datagrid?',
+					del:'${webRoot}/intentTemplateRelationsController/doDel?',
+					batchDel:'${webRoot}/intentTemplateRelationsController/doBatchDel?',
+					queryDict:'${webRoot}/systemController/typeListJson',
+					save:'${webRoot}/intentTemplateRelationsController/doAdd?',
+					edit:'${webRoot}/intentTemplateRelationsController/doUpdate?',
 					upload:'${webRoot}/systemController/filedeal.do',
 					downFile:'${webRoot}/img/server/',
-					exportXls:'${webRoot}/intentTemplateRelationsController.do?exportXls&id=',
-					ImportXls:'${webRoot}/intentTemplateRelationsController.do?upload'
+					exportXls:'${webRoot}/intentTemplateRelationsController/exportXls&id=',
+					ImportXls:'${webRoot}/intentTemplateRelationsController/upload'
 				},
 				intentTemplateRelationss: [],
 				total: 0,

@@ -15,6 +15,16 @@ public interface IntentPhraseServiceI {
 
 	public long totalSum();
 
-	List<IntentPhraseEntity> queryStudentsBySql(int currPage, int pageSize);
+	List<IntentPhraseEntity> queryBySql(int currPage, int pageSize);
+
+
+	/**
+	 * 根据意图id 查询改意图的多有短语
+	 * @param phraseId
+	 * @return
+	 */
+	List<IntentPhraseEntity> queryByid(int phraseId);
+
+
 
 }

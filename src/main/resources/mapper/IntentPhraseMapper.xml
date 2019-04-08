@@ -58,5 +58,11 @@
      select * from intent_phrase  where  intent_phrase = #{intentPhrase,jdbcType=VARCHAR}
   </select>
 
+  <select id="queryByPhraseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from intent_phrase  where  intent_id = #{phraseId,jdbcType=INTEGER}
+
+
+  </select>
+
 
 </mapper>

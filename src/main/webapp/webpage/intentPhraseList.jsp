@@ -1,5 +1,15 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/context/mytags.jsp"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+%>
+<c:set var="webRoot" value="<%=basePath%>" />
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +55,12 @@
 			    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="handleAdd">新增</el-button>
 			    </el-form-item>
-			    <el-form-item>
+		<%--	    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="ExportXls">导出</el-button>
 			    </el-form-item>
 			    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="ImportXls">导入</el-button>
-			    </el-form-item>
+			    </el-form-item>--%>
 			</el-form>
 		</el-row>
 		
@@ -104,16 +114,16 @@
 				filters: {
 				},
 				url:{
-					list:'${webRoot}/intentPhraseController.do?datagrid',
-					del:'${webRoot}/intentPhraseController.do?doDel',
-					batchDel:'${webRoot}/intentPhraseController.do?doBatchDel',
-					queryDict:'${webRoot}/systemController.do?typeListJson',
-					save:'${webRoot}/intentPhraseController.do?doAdd',
-					edit:'${webRoot}/intentPhraseController.do?doUpdate',
+					list:'${webRoot}/intentPhraseController/datagrid?',
+					del:'${webRoot}/intentPhraseController/doDel?',
+					batchDel:'${webRoot}/intentPhraseController/doBatchDel?',
+					queryDict:'${webRoot}/systemController/typeListJson',
+					save:'${webRoot}/intentPhraseController/doAdd?',
+					edit:'${webRoot}/intentPhraseController/doUpdate?',
 					upload:'${webRoot}/systemController/filedeal.do',
 					downFile:'${webRoot}/img/server/',
-					exportXls:'${webRoot}/intentPhraseController.do?exportXls&id=',
-					ImportXls:'${webRoot}/intentPhraseController.do?upload'
+					exportXls:'${webRoot}/intentPhraseController/exportXls&id=',
+					ImportXls:'${webRoot}/intentPhraseController/upload'
 				},
 				intentPhrases: [],
 				total: 0,

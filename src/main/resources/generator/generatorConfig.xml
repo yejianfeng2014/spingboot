@@ -48,7 +48,7 @@
 <!--
         <table tableName="response_templates" domainObjectName="ResponseTemplates" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
         -->
-        <table tableName="t_email" domainObjectName="Temail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="raw_data_log" domainObjectName="TestEn" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
 
     </context>

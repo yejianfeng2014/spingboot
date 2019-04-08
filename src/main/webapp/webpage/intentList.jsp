@@ -1,5 +1,15 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/context/mytags.jsp"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+%>
+<c:set var="webRoot" value="<%=basePath%>" />
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +55,12 @@
 			    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="handleAdd">新增</el-button>
 			    </el-form-item>
-			    <el-form-item>
+			<%--    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="ExportXls">导出</el-button>
 			    </el-form-item>
 			    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="ImportXls">导入</el-button>
-			    </el-form-item>
+			    </el-form-item>--%>
 			</el-form>
 		</el-row>
 		
@@ -100,16 +110,16 @@
 				filters: {
 				},
 				url:{
-					list:'${webRoot}/intentController.do?datagrid',
-					del:'${webRoot}/intentController.do?doDel',
-					batchDel:'${webRoot}/intentController.do?doBatchDel',
-					queryDict:'${webRoot}/systemController.do?typeListJson',
-					save:'${webRoot}/intentController.do?doAdd',
-					edit:'${webRoot}/intentController.do?doUpdate',
+					list:'${webRoot}/intentController/datagrid?',
+					del:'${webRoot}/intentController/doDel?',
+					batchDel:'${webRoot}/intentController/doBatchDel?',
+					queryDict:'${webRoot}/systemController/typeListJson',
+					save:'${webRoot}/intentController/doAdd?',
+					edit:'${webRoot}/intentController/doUpdate?',
 					upload:'${webRoot}/systemController/filedeal.do',
 					downFile:'${webRoot}/img/server/',
-					exportXls:'${webRoot}/intentController.do?exportXls&id=',
-					ImportXls:'${webRoot}/intentController.do?upload'
+					exportXls:'${webRoot}/intentController/exportXls&id=',
+					ImportXls:'${webRoot}/intentController/upload'
 				},
 				intents: [],
 				total: 0,

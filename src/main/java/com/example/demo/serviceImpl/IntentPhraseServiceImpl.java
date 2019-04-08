@@ -56,7 +56,7 @@ public class IntentPhraseServiceImpl  implements IntentPhraseServiceI {
 	}
 
 	@Override
-	public List<IntentPhraseEntity> queryStudentsBySql(int currPage, int pageSize) {
+	public List<IntentPhraseEntity> queryBySql(int currPage, int pageSize) {
 
 		Map<String, Object> data = new HashMap<>();
 		data.put("currIndex", (currPage-1)*pageSize);
@@ -67,6 +67,10 @@ public class IntentPhraseServiceImpl  implements IntentPhraseServiceI {
 
 	}
 
+	@Override
+	public List<IntentPhraseEntity> queryByid(int phraseId) {
+		List<IntentPhraseEntity> intentPhraseEntities = mapper.queryByPhraseId(phraseId);
 
-
+		return intentPhraseEntities;
+	}
 }

@@ -58,7 +58,7 @@ public class IntentPhraseController  {
 		try {
 			int page = dataGrid.getPage();
 			int rows = dataGrid.getRows();
-			List<IntentPhraseEntity> emailSellResponseBeggins = intentPhraseService.queryStudentsBySql(page, rows);
+			List<IntentPhraseEntity> emailSellResponseBeggins = intentPhraseService.queryBySql(page, rows);
 			long l1 = intentPhraseService.totalSum();
 			Map<String, Object> stringObjectHashMap = new HashMap<>();
 			stringObjectHashMap.put("total", l1);
