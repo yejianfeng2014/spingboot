@@ -9,6 +9,7 @@ import com.example.demo.bean.mysql.IntentTemplateRelationsEntity;
 import com.example.demo.model.json.AjaxJson;
 import com.example.demo.model.json.DataGrid;
 import com.example.demo.service.IntentTemplateRelationsServiceI;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/intentTemplateRelationsController")
+@Api(tags = "intentTemplateRelationsController", description ="意图和模板的对应关系表")
 public class IntentTemplateRelationsController  {
 	private static final Logger logger = LoggerFactory.getLogger(IntentTemplateRelationsController.class);
 
@@ -56,6 +58,7 @@ public class IntentTemplateRelationsController  {
 	 * @param dataGrid
 	 */
 	@RequestMapping(value  = "datagrid",method = RequestMethod.GET)
+	@ResponseBody
 	public Object datagrid(IntentTemplateRelationsEntity intentTemplateRelations, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 
 		AjaxJson j = new AjaxJson();
@@ -67,7 +70,7 @@ public class IntentTemplateRelationsController  {
 			Map<String, Object> stringObjectHashMap = new HashMap<>();
 			stringObjectHashMap.put("total", l1);
 			stringObjectHashMap.put("rows", emailSellResponseBeggins);
-			stringObjectHashMap.put("success",false);
+			stringObjectHashMap.put("success",true);
 			logger.info("datagrid");
 			return stringObjectHashMap;
 		} catch (Exception e) {

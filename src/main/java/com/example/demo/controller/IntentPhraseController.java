@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 import com.example.demo.bean.mysql.IntentPhraseEntity;
 import com.example.demo.model.json.AjaxJson;
-
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-
 import com.example.demo.model.json.DataGrid;
 import com.example.demo.service.IntentPhraseServiceI;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/intentPhraseController")
+@Api(tags = "intentPhraseController", description = "意图短语的增删改，查")
 public class IntentPhraseController  {
 	private static final Logger logger = LoggerFactory.getLogger(IntentPhraseController.class);
 
@@ -51,6 +50,7 @@ public class IntentPhraseController  {
 	 * @param dataGrid
 	 */
 	@RequestMapping(value = "datagrid" ,method = RequestMethod.GET)
+	@ResponseBody
 	public Object datagrid( DataGrid dataGrid) {
 
 		AjaxJson j = new AjaxJson();
@@ -62,7 +62,7 @@ public class IntentPhraseController  {
 			Map<String, Object> stringObjectHashMap = new HashMap<>();
 			stringObjectHashMap.put("total", l1);
 			stringObjectHashMap.put("rows", emailSellResponseBeggins);
-			stringObjectHashMap.put("success",false);
+			stringObjectHashMap.put("success",true);
 			logger.info("datagrid");
 			return stringObjectHashMap;
 		} catch (Exception e) {

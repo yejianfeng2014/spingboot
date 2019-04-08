@@ -1,45 +1,57 @@
 package com.example.demo.service;
 
-import java.io.InputStream;
-import java.io.Serializable;
+import com.example.demo.bean.mysql.IntentEntity;
+
+import java.util.List;
 
 public interface IntentServiceI {
+
+
 	/**
-	 * 意图标注
-	 * @param text
+	 * 根据实体删除
+	 * @param entity
+	 * @throws Exception
+	 */
+	public void delete(IntentEntity entity) throws Exception;
+
+	/**
+	 * 根据id 删除
+	 * @param id
+	 * @throws Exception
+	 */
+	public void delete(int id) throws Exception;
+
+	/**
+	 * 增加一个
+	 * @param entity
+	 * @return
+	 * @throws Exception
+	 */
+	public int save(IntentEntity entity) throws Exception;
+
+	/**
+	 * 更新
+	 * @param entity
+	 * @throws Exception
+	 */
+
+	public void saveOrUpdate(IntentEntity entity) throws Exception;
+
+	/**
+	 * 查询总数
 	 * @return
 	 */
-	public InputStream enText2Voice(String text);
+	public long totalSum();
 
 	/**
-	 *  意图查询
-	 * @param text
+	 * 分页查询
+	 * @param currPage
+	 * @param pageSize
 	 * @return
 	 */
-	public Object cnText2Voice(String text);
+	List<IntentEntity> queryStudentsBySql(int currPage, int pageSize);
 
 
 
-	/**
-	 *  意图查询所有
-	 * @param
-	 * @return
-	 */
-	public Object getintenAll();
-
-	/**
-	 *  意图分页查询
-	 * @param
-	 * @return
-	 */
-	public Object getintenpage();
-
-	/**
-	 * 删除意图
-	 * 根据意图id 删除意图
-	 *
-	 */
-
-	public  void  delintentionByID();
 
 }

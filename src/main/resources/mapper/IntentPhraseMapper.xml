@@ -13,8 +13,8 @@
   <insert id="insert" parameterType="com.example.demo.bean.mysql.IntentPhraseEntity" >
     insert into intent_phrase (id, intent_id, intent_phrase,
       intent_detail)
-    values (#{id,jdbcType=INTEGER}, #{intent_id,jdbcType=INTEGER}, #{intent_phrase,jdbcType=VARCHAR},
-      #{intent_detail,jdbcType=VARCHAR})
+    values (#{id,jdbcType=INTEGER}, #{intentId,jdbcType=INTEGER}, #{intentPhrase,jdbcType=VARCHAR},
+      #{intentDetail,jdbcType=VARCHAR})
   </insert>
 
 
@@ -48,7 +48,7 @@
 
 
 
-  <delete id="deleteById" parameterType="java.lang.String" >
+  <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from intent_phrase
     where id = #{id,jdbcType=INTEGER}
   </delete>

@@ -1,8 +1,6 @@
 package com.example.demo.service;
-import com.example.demo.bean.mysql.EmailSellResponseEnd;
 import com.example.demo.bean.mysql.IntentPhraseEntity;
 
-import java.io.Serializable;
 import java.util.List;
 
 public interface IntentPhraseServiceI {

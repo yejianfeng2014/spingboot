@@ -16,7 +16,7 @@ public interface IntentMapper {
 
     int update(IntentEntity user);
 
-    int deleteById(String id);
+    int deleteById(int id);
 
 
 

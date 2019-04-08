@@ -1,6 +1,5 @@
 package com.example.demo.dao.mysql;
 
-import com.example.demo.bean.mysql.EmailSellResponseBeggin;
 import com.example.demo.bean.mysql.IntentPhraseEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,11 +14,11 @@ public interface IntentPhraseMapper {
 
     long total();
 
-    List<EmailSellResponseBeggin> queryPageBySql(Map<String, Object> data);
+    List<IntentPhraseEntity> queryPageBySql(Map<String, Object> data);
 
     int update(IntentPhraseEntity user);
 
-    int deleteById(String id);
+    int deleteById(int id);
 
 //    List<EmailSellResponseBeggin> getALL();
 

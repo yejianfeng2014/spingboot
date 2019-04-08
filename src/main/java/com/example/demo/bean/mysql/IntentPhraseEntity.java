@@ -27,7 +27,7 @@ public class IntentPhraseEntity implements java.io.Serializable {
 	private Integer id;
 	/**意图id,来自intent表的主键*/
 //	@Excel(name="意图id,来自intent表的主键",width=15)
-	private String intentId;
+	private Integer intentId;
 	/**意图语句*/
 //	@Excel(name="意图语句",width=15)
 	private String intentPhrase;
@@ -61,7 +61,7 @@ public class IntentPhraseEntity implements java.io.Serializable {
 	 */
 
 //	@Column(name ="INTENT_ID",nullable=true,length=255)
-	public String getIntentId(){
+	public int getIntentId(){
 		return this.intentId;
 	}
 
@@ -69,7 +69,7 @@ public class IntentPhraseEntity implements java.io.Serializable {
 	 *方法: 设置java.lang.String
 	 *@param: java.lang.String  意图id,来自intent表的主键
 	 */
-	public void setIntentId(String intentId){
+	public void setIntentId(int intentId){
 		this.intentId = intentId;
 	}
 	
