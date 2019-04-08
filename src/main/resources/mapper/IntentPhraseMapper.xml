@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.mysql.IntentPhraseMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.IntentPhraseEntity" >
+
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="intent_id" property="intentId" jdbcType="INTEGER" />
+    <result column="intent_phrase" property="intentPhrase" jdbcType="VARCHAR" />
+    <result column="intent_detail" property="intentDetail" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <insert id="insert" parameterType="com.example.demo.bean.mysql.IntentPhraseEntity" >
+    insert into intent_phrase (id, intent_id, intent_phrase,
+      intent_detail)
+    values (#{id,jdbcType=INTEGER}, #{intent_id,jdbcType=INTEGER}, #{intent_phrase,jdbcType=VARCHAR},
+      #{intent_detail,jdbcType=VARCHAR})
+  </insert>
+
+
+
+  <select id="total" parameterType="long" resultType="long">
+    SELECT count(1) FROM intent_phrase
+  </select>
+
+  <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
+        select * from intent_phrase limit #{currIndex} , #{pageSize}
+</select>
+
+
+  <update id="update" parameterType="com.example.demo.bean.mysql.IntentPhraseEntity" >
+    update intent_phrase
+    <set >
+      <if test="intentId != null" >
+        intent_id = #{intentId,jdbcType=VARCHAR},
+      </if>
+      <if test="intentPhrase != null" >
+        intent_phrase = #{intentPhrase,jdbcType=VARCHAR},
+      </if>
+
+      <if test="intentDetail != null" >
+        intent_detail = #{intentDetail,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from intent_phrase
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+
+</mapper>
