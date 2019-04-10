@@ -12,7 +12,7 @@
 
 
   <insert id="insert" parameterType="com.example.demo.bean.mysql.IntentEntity" >
-    insert into intent (id, intent_name, intent_detail      )
+    insert into ai_intent (id, intent_name, intent_detail      )
     values (#{id,jdbcType=INTEGER}, #{intentName,jdbcType=VARCHAR}, #{intentDetail,jdbcType=VARCHAR}
       )
   </insert>
@@ -20,16 +20,16 @@
 
 
   <select id="total" parameterType="long" resultType="long">
-    SELECT count(1) FROM intent
+    SELECT count(1) FROM ai_intent
   </select>
 
   <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
-        select * from intent limit #{currIndex} , #{pageSize}
+        select * from ai_intent limit #{currIndex} , #{pageSize}
 </select>
 
 
   <update id="update" parameterType="com.example.demo.bean.mysql.IntentEntity" >
-    update intent
+    update ai_intent
     <set >
       <if test="intentName != null" >
         intent_name = #{intentName,jdbcType=VARCHAR},
@@ -45,7 +45,7 @@
 
 
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from intent
+    delete from ai_intent
     where id = #{id,jdbcType=INTEGER}
   </delete>
 

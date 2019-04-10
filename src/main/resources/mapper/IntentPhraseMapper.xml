@@ -11,7 +11,7 @@
 
 
   <insert id="insert" parameterType="com.example.demo.bean.mysql.IntentPhraseEntity" >
-    insert into intent_phrase (id, intent_id, intent_phrase,
+    insert into ai_intent_phrase (id, intent_id, intent_phrase,
       intent_detail)
     values (#{id,jdbcType=INTEGER}, #{intentId,jdbcType=INTEGER}, #{intentPhrase,jdbcType=VARCHAR},
       #{intentDetail,jdbcType=VARCHAR})
@@ -20,16 +20,16 @@
 
 
   <select id="total" parameterType="long" resultType="long">
-    SELECT count(1) FROM intent_phrase
+    SELECT count(1) FROM ai_intent_phrase
   </select>
 
   <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
-        select * from intent_phrase limit #{currIndex} , #{pageSize}
+        select * from ai_intent_phrase limit #{currIndex} , #{pageSize}
 </select>
 
 
   <update id="update" parameterType="com.example.demo.bean.mysql.IntentPhraseEntity" >
-    update intent_phrase
+    update ai_intent_phrase
     <set >
       <if test="intentId != null" >
         intent_id = #{intentId,jdbcType=VARCHAR},
@@ -49,17 +49,17 @@
 
 
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from intent_phrase
+    delete from ai_intent_phrase
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
 
   <select id="queryByPhrase" parameterType="java.lang.String" resultMap="BaseResultMap">
-     select * from intent_phrase  where  intent_phrase = #{intentPhrase,jdbcType=VARCHAR}
+     select * from ai_intent_phrase  where  intent_phrase = #{intentPhrase,jdbcType=VARCHAR}
   </select>
 
   <select id="queryByPhraseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select * from intent_phrase  where  intent_id = #{phraseId,jdbcType=INTEGER}
+        select * from ai_intent_phrase  where  intent_id = #{phraseId,jdbcType=INTEGER}
 
 
   </select>
