@@ -96,9 +96,11 @@ public class AiPaypalResponseTemplatesController {
         message = "ai_paypal_response_templates删除成功";
         try {
             aiPaypalResponseTemplatesService.delete(aiPaypalResponseTemplates);
+            logger.info("doDel");
         } catch (Exception e) {
             e.printStackTrace();
             message = "ai_paypal_response_templates删除失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -120,9 +122,11 @@ public class AiPaypalResponseTemplatesController {
                 int i = Integer.parseInt(id);
                 aiPaypalResponseTemplatesService.delete(i);
             }
+            logger.info("doBatchDel");
         } catch (Exception e) {
             e.printStackTrace();
             message = "ai_paypal_response_templates删除失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -143,9 +147,11 @@ public class AiPaypalResponseTemplatesController {
         message = "ai_paypal_response_templates添加成功";
         try {
             aiPaypalResponseTemplatesService.save(aiPaypalResponseTemplates);
+            logger.info("doAdd");
         } catch (Exception e) {
             e.printStackTrace();
             message = "ai_paypal_response_templates添加失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
@@ -165,9 +171,11 @@ public class AiPaypalResponseTemplatesController {
         message = "ai_paypal_response_templates更新成功";
         try {
             aiPaypalResponseTemplatesService.saveOrUpdate(aiPaypalResponseTemplates);
+            logger.info("doUpdate");
         } catch (Exception e) {
             e.printStackTrace();
             message = "ai_paypal_response_templates更新失败";
+            j.setSuccess(false);
         }
         j.setMsg(message);
         return j;
