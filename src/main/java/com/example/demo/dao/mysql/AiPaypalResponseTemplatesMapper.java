@@ -43,5 +43,14 @@ public interface AiPaypalResponseTemplatesMapper {
 //    List<AiPaypalResponseTemplatesEntity> getALL();
 
 
+    /**
+     * 根据意图短语返回意图，返回意图短语，意图关系，回复模板
+     *
+     *
+     */
+
+  List <AiPaypalResponseTemplatesEntity>  getPayPalTemplates(String text);
+
+
 
 }

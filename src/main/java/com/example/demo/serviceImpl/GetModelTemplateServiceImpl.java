@@ -1,6 +1,8 @@
 package com.example.demo.serviceImpl;
 
+import com.example.demo.bean.mysql.AiPaypalResponseTemplatesEntity;
 import com.example.demo.bean.mysql.IntentTemplateRelationsEntity;
+import com.example.demo.dao.mysql.AiPaypalResponseTemplatesMapper;
 import com.example.demo.dao.mysql.IntentTemplateRelationMapper;
 import com.example.demo.service.GetModelTemplateServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,11 @@ public class GetModelTemplateServiceImpl implements GetModelTemplateServiceI {
     @Autowired
     IntentTemplateRelationMapper intentTemplateRelationMapper;
 
+
+
+    @Autowired
+    AiPaypalResponseTemplatesMapper mapper;
+
     @Override
     public List<IntentTemplateRelationsEntity> getTemplateId(String text) {
 
@@ -22,5 +29,16 @@ public class GetModelTemplateServiceImpl implements GetModelTemplateServiceI {
 
         return hi;
 
+    }
+
+
+
+    @Override
+    public List<AiPaypalResponseTemplatesEntity> getTemplateIds_paypal(String text) {
+
+        List<AiPaypalResponseTemplatesEntity> payPalTemplates = mapper.getPayPalTemplates(text);
+
+
+        return payPalTemplates;
     }
 }

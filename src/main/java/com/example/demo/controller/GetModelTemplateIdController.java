@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.bean.mysql.IntentTemplateRelationsEntity;
+import com.example.demo.bean.mysql.AiPaypalResponseTemplatesEntity;
 import com.example.demo.bean.mysql.RawDataLogEntity;
 import com.example.demo.model.json.AjaxJson;
 import com.example.demo.service.GetModelTemplateServiceI;
@@ -35,7 +35,7 @@ public class GetModelTemplateIdController {
     private RawDataLogServiceI rawDataLogService;
 
     @Autowired
-   GetModelTemplateServiceI getModelTemplateServiceI;
+    GetModelTemplateServiceI getModelTemplateServiceI;
 
 
     @RequestMapping(value = "init", method = RequestMethod.GET)
@@ -61,6 +61,8 @@ public class GetModelTemplateIdController {
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "获取模板id成功！！！";
+
+        boolean support_data_from = true;
         try {
             logger.info("textFrom: " + textFrom);
             logger.info("text:" + text);
@@ -68,27 +70,29 @@ public class GetModelTemplateIdController {
             rawDataLogEntity.setRawText(text);
             rawDataLogEntity.setSourceType(textFrom);
             rawDataLogService.save(rawDataLogEntity);
+            if ("paypal".equals(textFrom.trim())) {
+                support_data_from = false;
+                List<AiPaypalResponseTemplatesEntity> templateIds_paypal = getModelTemplateServiceI.getTemplateIds_paypal(text.trim());
+                stringObjectHashMap.put("rows", templateIds_paypal);
+                j.setAttributes(stringObjectHashMap);
+            }
+            if (support_data_from && "email".equals(textFrom.trim())) {
+                support_data_from = false;
+            }
 
-            List<IntentTemplateRelationsEntity> templateIds = getModelTemplateServiceI.getTemplateId(text);
-
-            stringObjectHashMap.put("rows",templateIds);
-
-            j.setAttributes(stringObjectHashMap);
-
-            logger.info("getID");
+            if (support_data_from) {
+                message = "不支持的数据源，输入的数据源未paypal 或者email";
+                j.setSuccess(false);
+            }
+            logger.info("getTemplateId");
 
         } catch (Exception e) {
             e.printStackTrace();
             message = "获取模板id失败！！！";
             j.setSuccess(false);
-
         }
-
         j.setMsg(message);
         return j;
-
-
     }
-
 
 }

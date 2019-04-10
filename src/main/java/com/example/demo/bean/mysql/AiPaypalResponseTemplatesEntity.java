@@ -56,7 +56,38 @@ public class AiPaypalResponseTemplatesEntity implements java.io.Serializable {
 	/**params*/
 //	@Excel(name="params",width=15)
 	private String responseParams;
-	
+
+
+
+
+	private  String intentName;
+	private  String intentDetail;
+	private  String intentPhrase;
+
+	public String getIntentName() {
+		return intentName;
+	}
+
+	public void setIntentName(String intentName) {
+		this.intentName = intentName;
+	}
+
+	public String getIntentDetail() {
+		return intentDetail;
+	}
+
+	public void setIntentDetail(String intentDetail) {
+		this.intentDetail = intentDetail;
+	}
+
+	public String getIntentPhrase() {
+		return intentPhrase;
+	}
+
+	public void setIntentPhrase(String intentPhrase) {
+		this.intentPhrase = intentPhrase;
+	}
+
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  id

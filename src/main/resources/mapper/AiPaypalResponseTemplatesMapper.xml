@@ -5,6 +5,9 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="template_id" property="templateId" jdbcType="VARCHAR" />
     <result column="response_params" property="responseParams" jdbcType="VARCHAR" />
+      <result column="intent_name" property="intentName" jdbcType="VARCHAR" />
+      <result column="intent_detail" property="intentDetail" jdbcType="VARCHAR" />
+      <result column="intent_phrase" property="intentPhrase" jdbcType="VARCHAR" />
   </resultMap>
 
   <resultMap id="ResultMapWithBLOBs" type="com.example.demo.bean.mysql.AiPaypalResponseTemplatesEntity" extends="BaseResultMap" >
@@ -12,8 +15,12 @@
     <result column="content_type" property="contentType" jdbcType="LONGVARCHAR" />
     <result column="content_cn" property="contentCn" jdbcType="LONGVARCHAR" />
     <result column="content_response" property="contentResponse" jdbcType="LONGVARCHAR" />
-    <result column="content_response_cn" property="contentResponseCn" jdbcType="LONGVARCHAR" />
+      <result column="content_response_cn" property="contentResponseCn" jdbcType="LONGVARCHAR" />
+
+
   </resultMap>
+
+
   <sql id="Base_Column_List" >
     id, template_id, response_params
   </sql>
@@ -186,6 +193,35 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
+
+   <select id="getPayPalTemplates" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+           SELECT
+    ai_intent.intent_name,
+    ai_intent.intent_detail,
+    ai_intent_phrase.intent_phrase,
+
+    ai_paypal_response_templates.template_id,
+    ai_paypal_response_templates.response_time,
+    ai_paypal_response_templates.content_type,
+    ai_paypal_response_templates.content_cn,
+    ai_paypal_response_templates.content_response,
+    ai_paypal_response_templates.content_response_cn,
+    ai_paypal_response_templates.response_params
+    FROM
+    ai_intent ,
+    ai_intent_phrase ,
+    ai_intent_template_relations ,
+    ai_paypal_response_templates
+    WHERE
+    ai_intent_phrase.intent_id = ai_intent.id AND
+    ai_intent_template_relations.intent_id = ai_intent.id AND
+    ai_intent_template_relations.template_id = ai_paypal_response_templates.template_id
+
+    AND ai_intent_phrase.intent_phrase=#{text,jdbcType=VARCHAR}
+
+
+
+   </select>
 
 
 
