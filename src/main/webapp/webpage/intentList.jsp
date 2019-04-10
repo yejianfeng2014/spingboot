@@ -55,12 +55,12 @@
 			    <el-form-item>
 			    	<el-button type="primary" icon="el-icon-edit" @click="handleAdd">新增</el-button>
 			    </el-form-item>
-			<%--    <el-form-item>
-			    	<el-button type="primary" icon="el-icon-edit" @click="ExportXls">导出</el-button>
+		    <el-form-item>
+			    	<el-button type="primary" icon="el-icon-edit" @click="handleAdd_batch">新增意图短语</el-button>
 			    </el-form-item>
-			    <el-form-item>
-			    	<el-button type="primary" icon="el-icon-edit" @click="ImportXls">导入</el-button>
-			    </el-form-item>--%>
+				<%--<el-form-item>
+                <el-button type="primary" icon="el-icon-edit" @click="ImportXls">导入</el-button>
+            </el-form-item>--%>
 			</el-form>
 		</el-row>
 		
@@ -238,6 +238,18 @@
 					intentDetail:'',
 				};
 			},
+
+			//显示新增界面
+			handleAdd_batch: function () {
+				this.formTitle='新增意图短语';
+				this.formVisible = true;
+				this.form = {
+					intentName:'',
+					intentDetail:'',
+				};
+			},
+
+
 			//新增
 			formSubmit: function () {
 				this.$refs.form.validate((valid) => {
@@ -286,10 +298,17 @@
 				}).catch(() => {
 				});
 			},
-			//导出
-			ExportXls: function() {
+			//批量新增
+			insert_phrase: function() {
+
+
+
 					var ids = this.sels.map(item => item.id).toString();
 					window.location.href = this.url.exportXls+ids;
+
+
+
+
 			},
 			//导入
 			ImportXls: function(){

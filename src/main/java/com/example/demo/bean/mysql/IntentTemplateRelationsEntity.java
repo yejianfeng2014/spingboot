@@ -1,14 +1,7 @@
 package com.example.demo.bean.mysql;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.lang.String;
-import java.io.UnsupportedEncodingException;
-import java.lang.Double;
 import java.lang.Integer;
-import java.math.BigDecimal;
-import javax.xml.soap.Text;
-import java.sql.Blob;
 
 
 /**   
@@ -30,7 +23,7 @@ public class IntentTemplateRelationsEntity implements java.io.Serializable {
 	private Integer intentId;
 	/**templateId*/
 //	@Excel(name="templateId",width=15)
-	private Integer templateId;
+	private String templateId;
 	/**意图id的描述*/
 //	@Excel(name="意图id的描述",width=15)
 	private String intentIdDetail;
@@ -81,19 +74,14 @@ public class IntentTemplateRelationsEntity implements java.io.Serializable {
 	 *@return: java.lang.Integer  templateId
 	 */
 
-//	@Column(name ="TEMPLATE_ID",nullable=true,length=10)
-	public Integer getTemplateId(){
-		return this.templateId;
+	public String getTemplateId() {
+		return templateId;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  templateId
-	 */
-	public void setTemplateId(Integer templateId){
+	public void setTemplateId(String templateId) {
 		this.templateId = templateId;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  意图id的描述

@@ -68,7 +68,7 @@
 		<el-table :data="intentPhrases" border stripe size="mini" highlight-current-row v-loading="listLoading" @sort-change="handleSortChange"  @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="selection" width="55"></el-table-column>
 			<el-table-column type="index" width="60"></el-table-column>
-			<el-table-column prop="intentId" label="意图id,来自intent表的主键" min-width="120" sortable="custom" show-overflow-tooltip></el-table-column>
+			<el-table-column prop="intentId" label="意图id" min-width="120" sortable="custom" show-overflow-tooltip></el-table-column>
 			<el-table-column prop="intentPhrase" label="意图语句" min-width="120" sortable="custom" show-overflow-tooltip></el-table-column>
 			<el-table-column prop="intentDetail" label="短语描述" min-width="120" sortable="custom" show-overflow-tooltip></el-table-column>
 			<el-table-column label="操作" width="150">
