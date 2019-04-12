@@ -80,7 +80,7 @@
 
 
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
-    update raw_data_log
+    update bt_ai_raw_data_log
     set source_type = #{sourceType,jdbcType=VARCHAR},
       insert_date = #{insertDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
@@ -100,7 +100,7 @@
 
 
   <insert id="insert" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
-    insert into raw_data_log (id, source_type,
+    insert into bt_ai_raw_data_log (id, source_type,
       raw_text)
     values (#{id,jdbcType=BIGINT}, #{sourceType,jdbcType=VARCHAR},
       #{rawText,jdbcType=LONGVARCHAR})
@@ -108,17 +108,17 @@
 
 
   <select id="total" parameterType="long" resultType="long">
-    SELECT count(1) FROM raw_data_log
+    SELECT count(1) FROM bt_ai_raw_data_log
   </select>
 
   <select id="queryPageBySql" parameterType="map" resultMap="ResultMapWithBLOBs">
-        select * from raw_data_log  limit #{currIndex} , #{pageSize}
+        select * from bt_ai_raw_data_log  limit #{currIndex} , #{pageSize}
 </select>
 
 
 
   <update id="update" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
-    update raw_data_log
+    update bt_ai_raw_data_log
     <set >
       <if test="sourceType != null" >
         source_type = #{sourceType,jdbcType=VARCHAR},
@@ -135,7 +135,7 @@
 
 
   <delete id="deleteById" parameterType="java.lang.Long">
-     delete from raw_data_log
+     delete from bt_ai_raw_data_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
 

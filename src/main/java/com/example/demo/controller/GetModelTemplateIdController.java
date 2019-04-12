@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.bean.mysql.AiPaypalResponseTemplatesEntity;
+import com.example.demo.bean.mysql.OrderInfoEntity;
 import com.example.demo.bean.mysql.RawDataLogEntity;
 import com.example.demo.model.json.AjaxJson;
 import com.example.demo.service.GetModelTemplateServiceI;
@@ -51,7 +52,7 @@ public class GetModelTemplateIdController {
      */
     @RequestMapping(value = "/getTemplateId", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson getID(String msg, String channel) {
+    public AjaxJson getID(String msg, String channel, OrderInfoEntity orderInfoEntity) {
 
         // TODO: 2019/4/1  从数据库读取数据
 
