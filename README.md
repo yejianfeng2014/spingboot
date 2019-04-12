@@ -32,6 +32,7 @@ http://localhost:8888/AI_customer_service/emailSellResponseOthersController/list
 
 
 
+
 #使用过程描述：
 1,修改application.proproperties 的数据库访问路径
 2,然后打包，mvn clean package -DskipTests，会在target 目录下生成 ***.war 文件
@@ -44,6 +45,10 @@ http://localhost:8888/AI_customer_service/emailSellResponseOthersController/list
             ai_intent_phrase 意图短语管理表0.1版本
             ai_intent_template_relations 意图模板关系表 0.1版本
             ai_paypal_response_templates 投诉回复模板表 0.1版本
+            
+            
+            item_significantly_not_as_described
+            
             
             
             

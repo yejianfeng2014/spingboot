@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.mysql.AiEmailIntentPhraseRelationsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.AiEmailIntentPhraseRelations" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="intent_id" property="intentId" jdbcType="INTEGER" />
+    <result column="template_id" property="templateId" jdbcType="VARCHAR" />
+    <result column="intent_id_detail" property="intentIdDetail" jdbcType="VARCHAR" />
+    <result column="template_id_detail" property="templateIdDetail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, update_time, intent_id, template_id, intent_id_detail, template_id_detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_ai_email_intent_template_relations
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bt_ai_email_intent_template_relations
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.bean.mysql.AiEmailIntentPhraseRelations" >
+    insert into bt_ai_email_intent_template_relations (id, create_time, update_time, 
+      intent_id, template_id, intent_id_detail, 
+      template_id_detail)
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{intentId,jdbcType=INTEGER}, #{templateId,jdbcType=VARCHAR}, #{intentIdDetail,jdbcType=VARCHAR}, 
+      #{templateIdDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.AiEmailIntentPhraseRelations" >
+    insert into bt_ai_email_intent_template_relations
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="intentId != null" >
+        intent_id,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="intentIdDetail != null" >
+        intent_id_detail,
+      </if>
+      <if test="templateIdDetail != null" >
+        template_id_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intentId != null" >
+        #{intentId,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="intentIdDetail != null" >
+        #{intentIdDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="templateIdDetail != null" >
+        #{templateIdDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.mysql.AiEmailIntentPhraseRelations" >
+    update bt_ai_email_intent_template_relations
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intentId != null" >
+        intent_id = #{intentId,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="intentIdDetail != null" >
+        intent_id_detail = #{intentIdDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="templateIdDetail != null" >
+        template_id_detail = #{templateIdDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.mysql.AiEmailIntentPhraseRelations" >
+    update bt_ai_email_intent_template_relations
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      intent_id = #{intentId,jdbcType=INTEGER},
+      template_id = #{templateId,jdbcType=VARCHAR},
+      intent_id_detail = #{intentIdDetail,jdbcType=VARCHAR},
+      template_id_detail = #{templateIdDetail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+  <select id="total" parameterType="long" resultType="long">
+    SELECT count(1) FROM bt_ai_email_intent_template_relations
+  </select>
+
+  <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
+        select * from bt_ai_email_intent_template_relations limit #{currIndex} , #{pageSize}
+</select>
+
+
+  <update id="update" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
+    update bt_ai_email_intent_template_relations
+    <set >
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="contentCn != null" >
+        content_cn = #{contentCn,jdbcType=VARCHAR},
+      </if>
+
+      <if test="contentResponse != null" >
+        content_response = #{contentResponse,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from bt_ai_email_intent_template_relations
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="getALL" parameterType="map" resultMap="BaseResultMap">
+        select * from  bt_ai_email_intent_template_relations
+</select>
+
+
+
+
+
+
+</mapper>

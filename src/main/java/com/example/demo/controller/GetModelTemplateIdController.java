@@ -51,7 +51,7 @@ public class GetModelTemplateIdController {
      */
     @RequestMapping(value = "/getTemplateId", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson getID(String text, String textFrom) {
+    public AjaxJson getID(String msg, String channel) {
 
         // TODO: 2019/4/1  从数据库读取数据
 
@@ -61,6 +61,10 @@ public class GetModelTemplateIdController {
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "获取模板id成功！！！";
+
+
+        String text = msg.toLowerCase().trim();
+        String textFrom = channel.toLowerCase().trim();
 
         boolean support_data_from = true;
         try {

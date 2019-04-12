@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.mysql.AiEmailResponseTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.AiEmailResponseTemplate" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="template_id" property="templateId" jdbcType="VARCHAR" />
+    <result column="response_params" property="responseParams" jdbcType="VARCHAR" />
+    <result column="response_time" property="responseTime" jdbcType="LONGVARCHAR" />
+    <result column="content_type" property="contentType" jdbcType="LONGVARCHAR" />
+    <result column="content_cn" property="contentCn" jdbcType="LONGVARCHAR" />
+    <result column="content_response" property="contentResponse" jdbcType="LONGVARCHAR" />
+    <result column="content_response_cn" property="contentResponseCn" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+
+
+
+  <insert id="insert" parameterType="com.example.demo.bean.mysql.AiEmailResponseTemplateWithBLOBs" >
+    insert into bt_ai_email_response_templates (id, create_time, update_time, 
+      template_id, response_params, response_time, 
+      content_type, content_cn, content_response, 
+      content_response_cn)
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{templateId,jdbcType=VARCHAR}, #{responseParams,jdbcType=VARCHAR}, #{responseTime,jdbcType=LONGVARCHAR}, 
+      #{contentType,jdbcType=LONGVARCHAR}, #{contentCn,jdbcType=LONGVARCHAR}, #{contentResponse,jdbcType=LONGVARCHAR}, 
+      #{contentResponseCn,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.AiEmailResponseTemplateWithBLOBs" >
+    insert into bt_ai_email_response_templates
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="responseParams != null" >
+        response_params,
+      </if>
+      <if test="responseTime != null" >
+        response_time,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+      <if test="contentCn != null" >
+        content_cn,
+      </if>
+      <if test="contentResponse != null" >
+        content_response,
+      </if>
+      <if test="contentResponseCn != null" >
+        content_response_cn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="responseParams != null" >
+        #{responseParams,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTime != null" >
+        #{responseTime,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="contentCn != null" >
+        #{contentCn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="contentResponse != null" >
+        #{contentResponse,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="contentResponseCn != null" >
+        #{contentResponseCn,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+
+
+
+  <select id="total" parameterType="long" resultType="long">
+    SELECT count(1) FROM bt_ai_email_response_templates
+  </select>
+
+  <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
+        select * from bt_ai_email_response_templates limit #{currIndex} , #{pageSize}
+</select>
+
+
+  <update id="update" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
+    update bt_ai_email_response_templates
+    <set >
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="contentCn != null" >
+        content_cn = #{contentCn,jdbcType=VARCHAR},
+      </if>
+
+      <if test="contentResponse != null" >
+        content_response = #{contentResponse,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from bt_ai_email_response_templates
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="getALL" parameterType="map" resultMap="BaseResultMap">
+        select * from bt_ai_email_response_templates
+</select>
+
+
+
+
+</mapper>
