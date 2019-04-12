@@ -12,8 +12,6 @@
         <result column="content" jdbcType="LONGVARCHAR" property="content"/>
     </resultMap>
 
-
-
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from response_templates
     where id = #{id,jdbcType=INTEGER}

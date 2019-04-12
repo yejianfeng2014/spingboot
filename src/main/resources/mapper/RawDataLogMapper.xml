@@ -25,13 +25,13 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from raw_data_log
+    from bt_raw_data_log
     where id = #{id,jdbcType=BIGINT}
   </select>
 
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from raw_data_log
+    delete from bt_raw_data_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
@@ -39,7 +39,7 @@
 
 
   <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
-    insert into raw_data_log
+    insert into bt_raw_data_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -71,7 +71,7 @@
   </insert>
 
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.bean.mysql.RawDataLogEntity" >
-    update raw_data_log
+    update bt_raw_data_log
     set source_type = #{sourceType,jdbcType=VARCHAR},
       insert_date = #{insertDate,jdbcType=TIMESTAMP},
       raw_text = #{rawText,jdbcType=LONGVARCHAR}

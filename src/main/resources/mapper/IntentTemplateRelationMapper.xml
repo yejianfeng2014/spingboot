@@ -12,7 +12,7 @@
 
 
     <insert id="insert" parameterType="com.example.demo.bean.mysql.IntentTemplateRelationsEntity">
-    insert into ai_intent_template_relations (id, intent_id, template_id,
+    insert into bt_ai_intent_template_relations (id, intent_id, template_id,
       intent_id_detail,template_id_detail)
     values (#{id,jdbcType=INTEGER}, #{intentId,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER},
       #{intentIdDetail,jdbcType=VARCHAR},#{templateIdDetail,jdbcType=VARCHAR})
@@ -20,16 +20,16 @@
 
 
     <select id="total" parameterType="long" resultType="long">
-    SELECT count(1) FROM ai_intent_template_relations
+    SELECT count(1) FROM bt_ai_intent_template_relations
   </select>
 
     <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
-        select * from ai_intent_template_relations limit #{currIndex} , #{pageSize}
+        select * from bt_ai_intent_template_relations limit #{currIndex} , #{pageSize}
 </select>
 
 
     <update id="update" parameterType="com.example.demo.bean.mysql.IntentTemplateRelationsEntity">
-        update ai_intent_template_relations
+        update bt_ai_intent_template_relations
         <set>
             <if test="intentId != null">
                 intent_id = #{intentId,jdbcType=INTEGER},
@@ -53,14 +53,14 @@
 
 
     <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from ai_intent_template_relations
+    delete from bt_ai_intent_template_relations
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
 
     <select id="queryByIntentId" parameterType="map" resultMap="BaseResultMap">
 
-        select * from ai_intent_template_relations where  intent_id = #{intentId}
+        select * from bt_ai_intent_template_relations where  intent_id = #{intentId}
 
 
     </select>
@@ -69,13 +69,13 @@
     <select id="queryByintentPhrase" parameterType="java.lang.String" resultMap="BaseResultMap">
 
                 SELECT
-            ai_intent_template_relations.*
+            bt_ai_intent_template_relations.*
         FROM
-            ai_intent_template_relations,
-            ai_intent_phrase
+            bt_ai_intent_template_relations,
+            bt_ai_intent_phrase
         WHERE
-            ai_intent_template_relations.intent_id = ai_intent_phrase.intent_id
-        AND ai_intent_phrase.intent_phrase = #{text}
+            bt_ai_intent_template_relations.intent_id = bt_ai_intent_phrase.intent_id
+        AND bt_ai_intent_phrase.intent_phrase = #{text}
 
     </select>
 
