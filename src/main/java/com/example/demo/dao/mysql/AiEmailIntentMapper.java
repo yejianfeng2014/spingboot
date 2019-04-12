@@ -1,20 +1,21 @@
 package com.example.demo.dao.mysql;
 
 import com.example.demo.bean.mysql.AiEmailIntent;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
-
+@Mapper
 public interface AiEmailIntentMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(AiEmailIntent record);
+//    int insert(AiEmailIntent record);
 
     int insertSelective(AiEmailIntent record);
 
     AiEmailIntent selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(AiEmailIntent record);
+//    int updateByPrimaryKeySelective(AiEmailIntent record);
 
     int updateByPrimaryKey(AiEmailIntent record);
 
@@ -24,9 +25,9 @@ public interface AiEmailIntentMapper {
 
     int update(AiEmailIntent user);
 
-    int deleteById(String id);
+    int deleteById(Integer id);
 
-    List<AiEmailIntent> getALL();
+//    List<AiEmailIntent> getALL();
 
 
 

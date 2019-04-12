@@ -1,11 +1,11 @@
 package com.example.demo.dao.mysql;
 
 import com.example.demo.bean.mysql.AiEmailIntentPhraseRelations;
-import com.example.demo.bean.mysql.EmailSellResponseBeggin;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
-
+@Mapper
 public interface AiEmailIntentPhraseRelationsMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -25,10 +25,10 @@ public interface AiEmailIntentPhraseRelationsMapper {
 
     List<AiEmailIntentPhraseRelations> queryPageBySql(Map<String,Object> data);
 
-    int update(AiEmailIntentPhraseRelations user);
+//    int update(AiEmailIntentPhraseRelations user);
 
-    int deleteById(String id);
+//    int deleteById(String id);
 
-    List<AiEmailIntentPhraseRelations> getALL();
+//    List<AiEmailIntentPhraseRelations> getALL();
 
 }

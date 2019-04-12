@@ -8,25 +8,8 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <sql id="Base_Column_List">
-    id, intent_name, intent_detail, create_time, update_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from bt_ai_email_intent
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from bt_ai_email_intent
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    insert into bt_ai_email_intent (id, intent_name, intent_detail, 
-      create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{intentName,jdbcType=VARCHAR}, #{intentDetail,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
+
+
   <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
     insert into bt_ai_email_intent
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -64,240 +47,66 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    update bt_ai_email_intent
-    <set>
-      <if test="intentName != null">
-        intent_name = #{intentName,jdbcType=VARCHAR},
-      </if>
-      <if test="intentDetail != null">
-        intent_detail = #{intentDetail,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    update bt_ai_email_intent
-    set intent_name = #{intentName,jdbcType=VARCHAR},
-      intent_detail = #{intentDetail,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.AiEmailIntent">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="intent_id" jdbcType="INTEGER" property="intentId" />
-    <result column="intent_phrase" jdbcType="VARCHAR" property="intentPhrase" />
-    <result column="intent_detail" jdbcType="VARCHAR" property="intentDetail" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, intent_id, intent_phrase, intent_detail
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from bt_ai_email_intent_phrase
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from bt_ai_email_intent_phrase
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    insert into bt_ai_email_intent_phrase (id, intent_id, intent_phrase, 
-      intent_detail)
-    values (#{id,jdbcType=INTEGER}, #{intentId,jdbcType=INTEGER}, #{intentPhrase,jdbcType=VARCHAR}, 
-      #{intentDetail,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    insert into bt_ai_email_intent_phrase
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="intentId != null">
-        intent_id,
-      </if>
-      <if test="intentPhrase != null">
-        intent_phrase,
-      </if>
-      <if test="intentDetail != null">
-        intent_detail,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="intentId != null">
-        #{intentId,jdbcType=INTEGER},
-      </if>
-      <if test="intentPhrase != null">
-        #{intentPhrase,jdbcType=VARCHAR},
-      </if>
-      <if test="intentDetail != null">
-        #{intentDetail,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    update bt_ai_email_intent_phrase
-    <set>
-      <if test="intentId != null">
-        intent_id = #{intentId,jdbcType=INTEGER},
-      </if>
-      <if test="intentPhrase != null">
-        intent_phrase = #{intentPhrase,jdbcType=VARCHAR},
-      </if>
-      <if test="intentDetail != null">
-        intent_detail = #{intentDetail,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    update bt_ai_email_intent_phrase
-    set intent_id = #{intentId,jdbcType=INTEGER},
-      intent_phrase = #{intentPhrase,jdbcType=VARCHAR},
-      intent_detail = #{intentDetail,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.example.demo.bean.mysql.AiEmailIntent">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="intent_name" jdbcType="VARCHAR" property="intentName" />
-    <result column="intent_detail" jdbcType="VARCHAR" property="intentDetail" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, intent_name, intent_detail, create_time, update_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from bt_ai_email_intent
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from bt_ai_email_intent
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    insert into bt_ai_email_intent (id, intent_name, intent_detail, 
-      create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{intentName,jdbcType=VARCHAR}, #{intentDetail,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    insert into bt_ai_email_intent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="intentName != null">
-        intent_name,
-      </if>
-      <if test="intentDetail != null">
-        intent_detail,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="intentName != null">
-        #{intentName,jdbcType=VARCHAR},
-      </if>
-      <if test="intentDetail != null">
-        #{intentDetail,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    update bt_ai_email_intent
-    <set>
-      <if test="intentName != null">
-        intent_name = #{intentName,jdbcType=VARCHAR},
-      </if>
-      <if test="intentDetail != null">
-        intent_detail = #{intentDetail,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
-    update bt_ai_email_intent
-    set intent_name = #{intentName,jdbcType=VARCHAR},
-      intent_detail = #{intentDetail,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-
-
 
 
   <select id="total" parameterType="long" resultType="long">
-    SELECT count(1) FROM email_sell_response_beggin
+    SELECT count(1) FROM bt_ai_email_intent
   </select>
 
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from bt_ai_email_intent
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
   <select id="queryPageBySql" parameterType="map" resultMap="BaseResultMap">
-        select * from email_sell_response_beggin limit #{currIndex} , #{pageSize}
+        select * from bt_ai_email_intent limit #{currIndex} , #{pageSize}
 </select>
 
-
-  <update id="update" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
-    update email_sell_response_beggin
-    <set >
-      <if test="contentType != null" >
-        content_type = #{contentType,jdbcType=VARCHAR},
+  <update id="update" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
+    update bt_ai_email_intent
+    <set>
+      <if test="intentName != null">
+        intent_name = #{intentName,jdbcType=VARCHAR},
       </if>
-      <if test="contentCn != null" >
-        content_cn = #{contentCn,jdbcType=VARCHAR},
+      <if test="intentDetail != null">
+        intent_detail = #{intentDetail,jdbcType=VARCHAR},
       </if>
-
-      <if test="contentResponse != null" >
-        content_response = #{contentResponse,jdbcType=VARCHAR},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.mysql.AiEmailIntent">
+    update bt_ai_email_intent
+    set intent_name = #{intentName,jdbcType=VARCHAR},
+      intent_detail = #{intentDetail,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
 
-
-  <delete id="deleteById" parameterType="java.lang.String" >
-    delete from email_sell_response_beggin
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bt_ai_email_intent
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <select id="getALL" parameterType="map" resultMap="BaseResultMap">
-        select * from email_sell_response_beggin
-</select>
+
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from bt_ai_email_intent
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+<!--  <select id="getALL" parameterType="map" resultMap="BaseResultMap">
+        select * from bt_ai_email_intent
+</select>-->
 
 
 

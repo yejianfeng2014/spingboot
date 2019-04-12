@@ -84,10 +84,6 @@
 
 
 
-
-
-
-
   <select id="total" parameterType="long" resultType="long">
     SELECT count(1) FROM bt_ai_email_intent_phrase
   </select>
@@ -97,30 +93,6 @@
 </select>
 
 
-  <update id="update" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
-    update bt_ai_email_intent_phrase
-    <set >
-      <if test="contentType != null" >
-        content_type = #{contentType,jdbcType=VARCHAR},
-      </if>
-      <if test="contentCn != null" >
-        content_cn = #{contentCn,jdbcType=VARCHAR},
-      </if>
-
-      <if test="contentResponse != null" >
-        content_response = #{contentResponse,jdbcType=VARCHAR},
-      </if>
-
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-
-
-
-  <delete id="deleteById" parameterType="java.lang.String" >
-    delete from bt_ai_email_intent_phrase
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
 
   <select id="getALL" parameterType="map" resultMap="BaseResultMap">
         select * from bt_ai_email_intent_phrase

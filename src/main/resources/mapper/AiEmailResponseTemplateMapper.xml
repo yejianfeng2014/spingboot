@@ -17,7 +17,7 @@
 
 
 
-  <insert id="insert" parameterType="com.example.demo.bean.mysql.AiEmailResponseTemplateWithBLOBs" >
+  <insert id="insert" parameterType="com.example.demo.bean.mysql.AiEmailResponseTemplate" >
     insert into bt_ai_email_response_templates (id, create_time, update_time, 
       template_id, response_params, response_time, 
       content_type, content_cn, content_response, 
@@ -27,7 +27,31 @@
       #{contentType,jdbcType=LONGVARCHAR}, #{contentCn,jdbcType=LONGVARCHAR}, #{contentResponse,jdbcType=LONGVARCHAR}, 
       #{contentResponseCn,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.AiEmailResponseTemplateWithBLOBs" >
+
+
+
+
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.mysql.AiEmailResponseTemplate" >
+    update bt_ai_email_response_templates
+     set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+
+      template_id = #{templateId,jdbcType=VARCHAR},
+      response_params = #{responseParams,jdbcType=VARCHAR},
+      response_time = #{responseTime,jdbcType=LONGVARCHAR},
+      content_type = #{contentType,jdbcType=LONGVARCHAR},
+      content_cn = #{contentCn,jdbcType=LONGVARCHAR},
+      content_response = #{contentResponse,jdbcType=LONGVARCHAR},
+      content_response_cn = #{contentResponseCn,jdbcType=LONGVARCHAR}
+
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+  <insert id="insertSelective" parameterType="com.example.demo.bean.mysql.AiEmailResponseTemplate" >
     insert into bt_ai_email_response_templates
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -99,6 +123,9 @@
 
 
 
+
+
+
   <select id="total" parameterType="long" resultType="long">
     SELECT count(1) FROM bt_ai_email_response_templates
   </select>
@@ -107,24 +134,6 @@
         select * from bt_ai_email_response_templates limit #{currIndex} , #{pageSize}
 </select>
 
-
-  <update id="update" parameterType="com.example.demo.bean.mysql.EmailSellResponseBeggin" >
-    update bt_ai_email_response_templates
-    <set >
-      <if test="contentType != null" >
-        content_type = #{contentType,jdbcType=VARCHAR},
-      </if>
-      <if test="contentCn != null" >
-        content_cn = #{contentCn,jdbcType=VARCHAR},
-      </if>
-
-      <if test="contentResponse != null" >
-        content_response = #{contentResponse,jdbcType=VARCHAR},
-      </if>
-
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
 
 
 
