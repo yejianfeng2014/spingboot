@@ -28,6 +28,14 @@ public interface GetModelTemplateServiceI {
 //    public List <AiPaypalResponseTemplatesEntity> getTemplateIds_paypal(String text);
 
 
+    /**
+     * 查询PayPal的模板
+     * @param text
+     *
+     * @return
+     */
+    public List <AiPaypalResponseTemplatesEntity> getTemplateIdsPaypalOderStatusConditon(String text,int order_status,int other_condition);
+
 
 
 }

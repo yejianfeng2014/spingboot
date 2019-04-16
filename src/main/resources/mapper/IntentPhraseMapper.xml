@@ -60,9 +60,9 @@
 
   <select id="queryByPhraseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select * from bt_ai_intent_phrase  where  intent_id = #{phraseId,jdbcType=INTEGER}
-
-
   </select>
+
+
 
 
 </mapper>

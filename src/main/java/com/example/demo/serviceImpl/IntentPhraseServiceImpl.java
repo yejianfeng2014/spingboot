@@ -73,4 +73,21 @@ public class IntentPhraseServiceImpl  implements IntentPhraseServiceI {
 
 		return intentPhraseEntities;
 	}
+
+
+	@Override
+	public List<IntentPhraseEntity> queryByPhrase(String text) {
+		List<IntentPhraseEntity> intentPhraseEntities = mapper.queryByPhrase(text);
+
+		return  intentPhraseEntities;
+
+	}
+
+
+	@Override
+	public int queryByPhrase2Int(String text) {
+		List<IntentPhraseEntity> intentPhraseEntities = mapper.queryByPhrase(text);
+
+		return  intentPhraseEntities.size();
+	}
 }

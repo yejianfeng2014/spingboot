@@ -41,14 +41,39 @@ http://localhost:8888/AI_customer_service/emailSellResponseOthersController/list
 
 
 # 投诉自动回复流程 前端发送过来的数据，---> 内容根据句子进行分割----> 根据句子提取对应的意图 --->根据意图查找模板-----> 回复模板
-涉及的表如下：ai_intent 意图管理 0.1版本
-            ai_intent_phrase 意图短语管理表0.1版本
-            ai_intent_template_relations 意图模板关系表 0.1版本
-            ai_paypal_response_templates 投诉回复模板表 0.1版本
+涉及的表如下：bt_ai_intent 意图管理 0.1版本
+            bt_ai_intent_phrase 意图短语管理表0.1版本
+            bt_ai_intent_template_relations 意图模板关系表 0.1版本
+            bt_ai_paypal_response_templates 投诉回复模板表 0.1版本
+            bt_ai_raw_data_log 每次接受到的信息
             
             
-            item_significantly_not_as_described
             
+            
+paypal 处理
+
+ 1,根据tx 号 判断是否全部发货  获取第二步的信息
+ 2,根据orderNo siteID 查询 物流信息  获取第三步需要的信息
+ 3,根据 ExpressNo 查询物流状态 
+ 
+ 4,根据 ExpressNo 创建一个物流查询请求
+ 5,根据 ExpressNo  进行查询
+ 
+ 
+  全部发货的状态下进行条件判断
+  
+    1，正常在途，小于7天物流在更新
+    2，物流显示已经妥投，
+    3，长期不更新 快递30天以上不更新，小包45-60天不更新
+    4，物流显示未妥投已经退回
+ 
+ 
+ 
+ 
+            
+            
+            
+  返回每一步查询的结果。
             
             
             

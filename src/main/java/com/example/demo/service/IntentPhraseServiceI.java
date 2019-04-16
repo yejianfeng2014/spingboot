@@ -26,5 +26,18 @@ public interface IntentPhraseServiceI {
 	List<IntentPhraseEntity> queryByid(int phraseId);
 
 
+	List<IntentPhraseEntity> queryByPhrase(String text);
+
+
+	/**
+	 * 根据短语返回查询的数量
+	 * @param text
+	 * @return
+	 */
+	int queryByPhrase2Int(String text);
+
+
+
+
 
 }
