@@ -127,6 +127,7 @@ public class GetModelTemplateIdController {
             if ("".equals(s)) {
                 retmsg = "查询erp 失败";
                 result_map.put("msg", retmsg);
+                result_map.put("success",false);
                 return result_map;
             }
 
@@ -213,11 +214,11 @@ public class GetModelTemplateIdController {
                 if (isLess7day) {
 
                     // 回复内3天的模板
-                    templateIds_paypal = getModelTemplateServiceI.getTemplateIdsPaypalOderStatusConditon(text, 1, 1);
+                    templateIds_paypal = getModelTemplateServiceI.getTemplateIdsPaypalOderStatusConditon(text, 2, 1);
                 } else {
 
                     // 回复3天外的模板
-                    templateIds_paypal = getModelTemplateServiceI.getTemplateIdsPaypalOderStatusConditon(text, 1, 2);
+                    templateIds_paypal = getModelTemplateServiceI.getTemplateIdsPaypalOderStatusConditon(text, 2, 2);
                 }
             }
         }
