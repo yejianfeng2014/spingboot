@@ -49,6 +49,7 @@ public interface AiPaypalResponseTemplatesMapper {
      */
 
   List <AiPaypalResponseTemplatesEntity>  getPayPalTemplates(String text);
+
   List <AiPaypalResponseTemplatesEntity>  getPayPalTemplatesStatusCondition(Map<String,Object> data);
 
 

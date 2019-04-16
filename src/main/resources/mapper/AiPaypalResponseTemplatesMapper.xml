@@ -8,6 +8,9 @@
         <result column="intent_name" property="intentName" jdbcType="VARCHAR"/>
         <result column="intent_detail" property="intentDetail" jdbcType="VARCHAR"/>
         <result column="intent_phrase" property="intentPhrase" jdbcType="VARCHAR"/>
+        <result column="order_status_name" property="orderStatusName" jdbcType="VARCHAR"/>
+        <result column="response_params_en" property="responseParamsEn" jdbcType="VARCHAR"/>
+
     </resultMap>
 
     <resultMap id="ResultMapWithBLOBs" type="com.example.demo.bean.mysql.AiPaypalResponseTemplatesEntity"
@@ -236,7 +239,9 @@
     bt_ai_paypal_response_templates.content_cn,
     bt_ai_paypal_response_templates.content_response,
     bt_ai_paypal_response_templates.content_response_cn,
-    bt_ai_paypal_response_templates.response_params
+    bt_ai_paypal_response_templates.response_params,
+        bt_ai_paypal_response_templates.order_status_name,
+    bt_ai_paypal_response_templates.response_params_en
     FROM
     bt_ai_intent ,
     bt_ai_intent_phrase ,

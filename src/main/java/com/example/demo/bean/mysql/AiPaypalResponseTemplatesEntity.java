@@ -46,6 +46,28 @@ public class AiPaypalResponseTemplatesEntity implements java.io.Serializable {
 	private  String intentDetail;
 	private  String intentPhrase;
 
+
+
+	private String orderStatusName;
+
+	private String responseParamsEn;
+
+	public String getOrderStatusName() {
+		return orderStatusName;
+	}
+
+	public void setOrderStatusName(String orderStatusName) {
+		this.orderStatusName = orderStatusName;
+	}
+
+	public String getResponseParamsEn() {
+		return responseParamsEn;
+	}
+
+	public void setResponseParamsEn(String responseParamsEn) {
+		this.responseParamsEn = responseParamsEn;
+	}
+
 	public String getIntentName() {
 		return intentName;
 	}

@@ -54,9 +54,7 @@ public class GetModelTemplateServiceImpl implements GetModelTemplateServiceI {
         mydata.put("other_condition", other_condition);
         mydata.put("text", text);
 
-        System.out.printf("order_stauts",order_status);
-        System.out.printf("other_condition",order_status);
-        System.out.printf("text",text);
+
 
         List<AiPaypalResponseTemplatesEntity> payPalTemplatesStatusCondition = mapper.getPayPalTemplatesStatusCondition(mydata);
 

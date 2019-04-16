@@ -172,6 +172,17 @@ public class GetModelTemplateIdController {
                     if (templateIdAll_allfahuo != null) {
                         result_map.put("list", templateIdAll_allfahuo);
 
+
+
+                        for (AiPaypalResponseTemplatesEntity aiPaypalResponseTemplatesEntity : templateIdAll_allfahuo) {
+                            Integer id = aiPaypalResponseTemplatesEntity.getId();
+
+//                            getModelTemplateServiceI.get
+
+
+                        }
+
+
                     } else {
 
                         In3day in3day = iCanShipIn3Days(orderNo, siteId);
@@ -179,6 +190,12 @@ public class GetModelTemplateIdController {
                         if (in3day.isSucess) {
                             List<AiPaypalResponseTemplatesEntity> templateIdAllShiped = getTemplateIdAll(text, orderNo, siteId, orderStatusName, shippingTypeName, in3day);
                             if (templateIdAllShiped != null) {
+
+
+
+
+
+                                // replace
                                 result_map.put("list", templateIdAllShiped);
                             }
                         } else {
@@ -190,6 +207,13 @@ public class GetModelTemplateIdController {
             }
 
             // todo int_totalCount !=1 的处理
+
+            // 替换变量
+
+//            Object list = result_map.get("list");
+
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
