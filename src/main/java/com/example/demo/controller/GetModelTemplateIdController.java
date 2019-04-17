@@ -152,7 +152,7 @@ public class GetModelTemplateIdController {
                 String phoneNumber = jsonObject1.getString("PhoneNumber");
                 String zipCode = jsonObject1.getString("ZipCode");
 
-                keyMaps.put("sitName", siteName);
+                keyMaps.put("siteName", siteName);
                 keyMaps.put("siteId", siteId);
                 keyMaps.put("order_no", orderNo);
                 keyMaps.put("receiver_value", receiver);
@@ -167,33 +167,30 @@ public class GetModelTemplateIdController {
                 // 1 ,判断发货状态
                 if ("paypal".equals(textFrom.trim())) {
 
-                    List<AiPaypalResponseTemplatesEntity> templateIdAll_allfahuo = getTemplateIdAll_allfahuo(text, orderNo, siteId, orderStatusName, shippingTypeName);
+                    List<AiPaypalResponseTemplatesEntity> templateIdAll_allfahuo = getTemplateIdAll_allfahuo(text, orderNo, siteId, orderStatusName, shippingTypeName,keyMaps);
 
                     if (templateIdAll_allfahuo != null) {
+
+
+                        List<AiPaypalResponseTemplatesEntity> templateIdAll_allfahuo_replaced = null;
+
+                        repalceParams(keyMaps, templateIdAll_allfahuo);
+
                         result_map.put("list", templateIdAll_allfahuo);
-
-
-
-                        for (AiPaypalResponseTemplatesEntity aiPaypalResponseTemplatesEntity : templateIdAll_allfahuo) {
-                            Integer id = aiPaypalResponseTemplatesEntity.getId();
-
-//                            getModelTemplateServiceI.get
-
-
-                        }
-
 
                     } else {
 
+
+
                         In3day in3day = iCanShipIn3Days(orderNo, siteId);
+                        String tracking_number = in3day.getTracking_number();
+
+                         keyMaps.put("tracking_number",tracking_number);
 
                         if (in3day.isSucess) {
                             List<AiPaypalResponseTemplatesEntity> templateIdAllShiped = getTemplateIdAll(text, orderNo, siteId, orderStatusName, shippingTypeName, in3day);
                             if (templateIdAllShiped != null) {
-
-
-
-
+                                repalceParams(keyMaps, templateIdAllShiped);
 
                                 // replace
                                 result_map.put("list", templateIdAllShiped);
@@ -220,8 +217,37 @@ public class GetModelTemplateIdController {
             retmsg = "获取模板id失败！！！";
             result_map.put("success", false);
         }
+
+        Object list = result_map.get("list");
+
+        if (list ==null || list.equals("")){
+            result_map.put("success",false);
+            retmsg = "获取模板失败";
+        }
+
         result_map.put("msg", retmsg);
+        logger.info("finished get template");
         return result_map;
+    }
+
+    public void repalceParams(Map<String, String> keyMaps, List<AiPaypalResponseTemplatesEntity> templateIdAll_allfahuo) {
+        for (AiPaypalResponseTemplatesEntity aiPaypalResponseTemplatesEntity : templateIdAll_allfahuo) {
+
+            String responseParamsEn = aiPaypalResponseTemplatesEntity.getResponseParamsEn();
+
+            String[] split = responseParamsEn.split(",");
+
+            String contentResponse = aiPaypalResponseTemplatesEntity.getContentResponse();
+            for (String s1 : split) {
+
+//                System.out.println("数据库参数："+s1);
+                if (keyMaps.containsKey(s1)){
+                    contentResponse = contentResponse.replaceAll(s1, keyMaps.get(s1));
+                }
+            }
+
+            aiPaypalResponseTemplatesEntity.setContentResponse(contentResponse);
+        }
     }
 
 
@@ -267,14 +293,15 @@ public class GetModelTemplateIdController {
     }
 
 
-    public List<AiPaypalResponseTemplatesEntity> getTemplateIdAll_allfahuo(String text, String orderNo, String siteId, String orderStatusName, String shippingTypeName) {
+    public List<AiPaypalResponseTemplatesEntity> getTemplateIdAll_allfahuo(String text, String orderNo, String siteId, String orderStatusName, String shippingTypeName,Map<String,String> keymaps) {
         List<AiPaypalResponseTemplatesEntity> templateIds_paypal = null;
 
 
         if ("全部发货".equals(orderStatusName)) {
 
 
-            int shipedStatus_int = allShipedStatus(orderNo, siteId, shippingTypeName);
+            int shipedStatus_int = allShipedStatus(orderNo, siteId, shippingTypeName,keymaps);
+
 
             if (shipedStatus_int == 0) {
 
@@ -282,12 +309,6 @@ public class GetModelTemplateIdController {
             }
 
 
-            if (shipedStatus_int == 0) {
-
-
-                templateIds_paypal = getModelTemplateServiceI.getTemplateIdsPaypalOderStatusConditon(text, 3, 0);
-
-            }
             if (shipedStatus_int == 1) {
 
                 templateIds_paypal = getModelTemplateServiceI.getTemplateIdsPaypalOderStatusConditon(text, 3, 2);
@@ -359,6 +380,7 @@ public class GetModelTemplateIdController {
 
             // 快递单号
             String expressNo = packageList.getString("ExpressNo");
+            j.setTracking_number(expressNo);
 
 
             JSONArray packageStatusList = packageList.getJSONArray("PackageStatusList");
@@ -398,24 +420,18 @@ public class GetModelTemplateIdController {
             if (a < 3) {
 
                 j.setLess7day(true);
-//                stringHashMap.put(keyString,false);
 
-
-//                return true;
             } else {
                 j.setLess7day(false);
 
-//                stringHashMap.put(keyString,true);
 
             }
         } catch (Exception e) {
             e.printStackTrace();
             j.setSucess(false);
-//            j.setSuccess(false);
         }
 
 
-//        j.setAttributes(stringHashMap);
 
         return j;
 
@@ -430,6 +446,17 @@ public class GetModelTemplateIdController {
         boolean isLess7day = true;
 
         String msg;
+
+        String tracking_number = "";
+
+
+        public String getTracking_number() {
+            return tracking_number;
+        }
+
+        public void setTracking_number(String tracking_number) {
+            this.tracking_number = tracking_number;
+        }
 
         public String getMsg() {
             return msg;
@@ -457,10 +484,12 @@ public class GetModelTemplateIdController {
     }
 
     // 返回数字 1,2,3,4  默认值是0
-    private int allShipedStatus(String orderNO, String siteID, String shippingTypeName) {
+    private int allShipedStatus(String orderNO, String siteID, String shippingTypeName,Map<String,String> keyMaps) {
 
 
         int result_int = 0;
+
+
 
 //        1  正常在途   2，已妥投，3，长期不更新，4，未妥投退回
         // TODO: 2019/4/16  修改编号1 的bug  未妥投退回暂时没法判断。
@@ -490,6 +519,8 @@ public class GetModelTemplateIdController {
             // 快递单号
             String expressNo = packageList.getString("ExpressNo");
 
+            keyMaps.put("tracking_number",expressNo);
+
 
             String s2 = erpQueyServiceI.queryByExpressNO(expressNo);
 
@@ -508,6 +539,15 @@ public class GetModelTemplateIdController {
                 return 1;
             }
 
+            if (traceStatus ==0){
+                return  0;
+            }
+
+
+
+            // 先进行创建
+
+            erpQueyServiceI.createTrackerNO(expressNo);
 
             String s1 = erpQueyServiceI.queryTrackerNO(expressNo);
 
@@ -581,7 +621,10 @@ public class GetModelTemplateIdController {
         }
 
 
+
         return result_int;
+
+
 
     }
 

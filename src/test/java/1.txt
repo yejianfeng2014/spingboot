@@ -1,0 +1,12 @@
+[order_no]
+Dear customer,
+Sorry for the inconvenience.
+Could you please offer us the tracking number of the returning package and tell us where we can track it? So that we can locate the package and process your refund soon.
+
+The sooner you reply, the sooner this problem can be resolved.Thanks for your highly understanding.
+
+
+
+
+order_no,tracking_number,receiver_value,address_value,city_value,state_value,state_code_value,country_value,zipcode_value,phonenumber_value
+siteName

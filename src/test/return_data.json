@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "msg": "不支持的数据源，输入的数据源未paypal 或者email",
+  "obj": null,
+  "attributes": null,
+  "jsonStr": "{\"msg\":\"不支持的数据源，输入的数据源未paypal 或者email\",\"success\":false}"
+
+}

@@ -1,0 +1,53 @@
+{
+  "msg": "Hello",
+  "channel": "paypal",
+  "orderInfo": {
+    "TotalCount": 1,
+    "PageIndex": 1,
+    "PageSize": 20,
+    "list": [
+      {
+        "OrderNo": "E832618",
+        "OrderGoodsCount": 1,
+        "Receiver": "Pam Hamilton",
+        "Email": "Pameyeam2@aol.com",
+        "Tx": "8UC17485904176704",
+        "SiteName": "berrylook",#站点名称
+        "SiteId": 7,
+        "GoodsCount": 1,#物品数量
+        "OrderStatus": 3,
+        "OrderStatusName": "全部发货",
+        "goods_price": 24.95,
+        "final_price": "29.83",
+        "discount_price": "1.25",
+        "shipping_price": "USD6.13",
+        "GoodsPrice": 24.95,
+        "FinalPrice": "USD29.83",
+        "DiscountPrice": "USD1.25",
+        "Currency": {
+          "Name": "USD",
+          "Description": "美金",
+          "Symbol": "＄",
+          "Id": 2,
+          "CreateUserName": "管理员",
+          "CreateTime": "2015-05-04T11:58:12.497",
+          "UpdateUserName": "管理员",
+          "UpdateTime": "2015-05-04T11:58:12.497"
+        },
+        "PayType": 1,
+        "PayTypeName": "Paypal",
+        "PayTime": "2019-03-17 14:42:40",
+        "ShippingPrice": "USD6.13",
+        "OrderRemark": null,
+        "ShippingType": 1,
+        "ShippingTypeName": "经济小包",
+        "Address": "152 Leeward Rd ",
+        "City": "Columbia",
+        "State": "SC",
+        "Country": "US",
+        "ZipCode": "29212",
+        "PhoneNumber": null
+      }
+    ]
+  }
+}
